@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>QUEF — UTAU VOICEBANK ARCHIVE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="site">
+  <header class="masthead">
+    <a class="symbol" href="#top">i</a>
+    <div class="edition">QUEF<br>UTAU VOICEBANK<br>ARCHIVE</div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="scatter s1">some numbers remain</div>
+      <div class="scatter s2">after the owner is gone</div>
+      <div class="scatter s3">—</div>
+      <div class="scatter s4">names, voices, unfinished messages</div>
+      <div class="scatter s5">left inside an old device</div>
+
+      <div class="scatter s6">Not every record</div>
+      <div class="scatter s7">explains itself.</div>
+      <div class="scatter s8">Some things survive only</div>
+      <div class="scatter s9">as fragments</div>
+      <div class="scatter s10">between one message and the next.</div>
+
+      <h1>archive</h1>
+
+      <div class="scatter s11">open a name,</div>
+      <div class="scatter s12">read what remains,</div>
+      <div class="scatter s13">and decide for yourself</div>
+      <div class="scatter s14">who might have been</div>
+      <div class="scatter s15">on the other side.</div>
+
+      <div class="hero-links">
+        <button data-open="voicebank">VOICEBANK</button>
+        <button data-open="about">ABOUT</button>
+        <button data-open="terms">TERMS</button>
+      </div>
+    </section>
+
+    <section class="voice-area" id="voicebank">
+      <div class="section-kicker">VOICEBANK INDEX / 2026</div>
+      <h2>voicebank</h2>
+      <div class="voice-grid" id="voiceGrid"></div>
+
+      <div class="small-copy">no message is complete.<br>no contact is entirely known.</div>
+      <div class="archive-note">LOG</div>
+      <div class="definition">a name remains.<br>a voice remains.<br>the rest is inference.</div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="section-no">01</div>
+      <h2>about</h2>
+      <div class="lang-switch">
+        <button class="about-lang active" data-about-lang="ja">日本語</button>
+        <button class="about-lang" data-about-lang="zh">中文</button>
+      </div>
+      <div class="about-copy" id="aboutContent"></div>
+    </section>
+
+    <section class="terms" id="terms">
+      <div class="section-no">02</div>
+      <h2>terms</h2>
+      <div class="lang-switch">
+        <button class="lang active" data-lang="ja">日本語</button>
+        <button class="lang" data-lang="zh">中文</button>
+      </div>
+      <div class="terms-copy" id="termsContent"></div>
+    </section>
+  </main>
+
+  <footer><div>Quef</div><div>UTAU VOICEBANK ARCHIVE</div><div>2026</div></footer>
+</div>
+
+<div class="modal" id="voiceModal" aria-hidden="true">
+  <button class="modal-close" id="modalClose">×</button>
+  <div class="modal-inner">
+    <div class="modal-index" id="modalFile"></div>
+    <h2 id="modalName"></h2>
+    <div class="variant-switch" id="variantSwitch"></div>
+    <div class="modal-type" id="modalType"></div>
+
+    <div class="modal-art">
+      <div class="target-corners"></div>
+      <div class="target-label">TARGET / <span id="modalId"></span></div>
+      <img id="modalImg" src="" alt="">
+    </div>
+    <div class="modal-content" id="modalBody"></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
