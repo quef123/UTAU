@@ -12,7 +12,7 @@ const groups = [
  variants:[
   {id:"saho-main",label:"MAIN",type:"5音階連続音 / VCV",pitch:"A3 / C4 / E4 / G4 / C5",img:"images/足立サホ.png",audio:"audio/足立サホ.wav",zip:"download/足立サホ.zip",desc:sahoDesc,facts:sahoProfile,special:sahoSpecial,staff:sahoStaff},
   {id:"saho-coffee",label:"Coffee",type:"VCV",pitch:"A3",img:"images/足立サホ_Coffee.png",audio:"audio/足立サホ_Coffee.wav",zip:"download/足立サホ_Coffee.zip",desc:sahoDesc,facts:sahoProfile,special:sahoSpecial,staff:sahoStaff},
-  {id:"saho-cracker",label:"Cracker",type:"VCV",pitch:"G4",img:"images/足立サホ_Cracker.png",audio:"audio/足立サホ_Cracker.wav",zip:"download/足立サホ_Cracker.zip",desc:sahoDesc,facts:sahoProfile,special:sahoSpecial,staff:sahoStaff},
+  {id:"saho-cracker",label:"Cracker",type:"VCV",pitch:"G4",img:"images/足立サホ_Cracker.png",audio:"audio/足立サホ_Cracker.wav",zip:"https://drive.google.com/uc?export=download&id=1objA9W5a6nsPwXWxiyf5GbcqXj6Cye9z",desc:sahoDesc,facts:sahoProfile,special:sahoSpecial,staff:sahoStaff},
   {id:"saho-caramel",label:"Caramel",type:"VCV",pitch:"C5",img:"images/足立サホ_Caramel.png",audio:"audio/足立サホ_Caramel.wav",zip:"download/足立サホ_Caramel.zip",desc:sahoDesc,facts:sahoProfile,special:sahoSpecial,staff:sahoStaff}
  ]
 },
@@ -21,7 +21,7 @@ const groups = [
  variants:[
   {
    id:"maki-vcv",label:"VCV",type:"2音階連続音 / VCV",pitch:"A3 / E4",
-   img:"images/小泉マキ_VCV.png",audio:"audio/小泉マキ_VCV.wav",zip:"download/小泉マキ_VCV.zip",
+   img:"images/小泉マキ_VCV.png",audio:"audio/小泉マキ_VCV.wav",zip:"https://drive.google.com/uc?export=download&id=1yEhTPZ12mIaia8ubGJON_i6DPbpD7vng",
    desc:"特立独行の少女。<br>軍火の密輸と売買で生計を立てるが、本人はその仕事を好いてはいないらしい。",
    facts:[["身長","166 cm"],["年齢","19 歳"],["性別","女"],["好き","ふわふわしたもの"],["嫌い","堅苦しいもの"],["人称","わたし / あなた"]],
    special:"[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC",
