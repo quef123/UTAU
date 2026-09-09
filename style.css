@@ -57,7 +57,7 @@ footer{width:310px;margin:auto;border-top:1px solid var(--line);padding:35px 0 7
 .modal-inner{width:min(560px,calc(100% - 70px));margin:90px auto 100px;position:relative}.modal-index{font-size:7px;opacity:.55;letter-spacing:.14em}
 .modal-inner h2{margin:28px 0 14px;font-family:var(--serif-cjk);font-weight:400;font-size:54px;line-height:.9;letter-spacing:-.04em}
 .variant-switch{margin:0 0 18px}.variant-btn{font-size:8px}.modal-type{font-size:8px;opacity:.65}
-.modal-art{width:300px;height:350px;margin:55px 0 50px 88px;position:relative;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.modal-art{width:300px;height:350px;margin:55px 0 50px 88px;position:relative;border:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .modal-art:before,.modal-art:after,.target-corners:before,.target-corners:after{content:"";position:absolute;width:28px;height:28px;border-color:var(--ink);border-style:solid}
 .modal-art:before{left:-1px;top:-1px;border-width:1px 0 0 1px}.modal-art:after{right:-1px;bottom:-1px;border-width:0 1px 1px 0}
 .target-corners:before{right:-1px;top:-1px;border-width:1px 1px 0 0}.target-corners:after{left:-1px;bottom:-1px;border-width:0 0 1px 1px}
