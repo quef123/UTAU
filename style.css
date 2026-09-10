@@ -510,3 +510,45 @@ footer{
   .hero-chat.log-open .chat-window{height:325px}
   .hero-chat.log-open .chat-bubble{max-width:72%}
 }
+
+
+/* v18 / UST link + click-to-restore chat */
+.main-nav .ust-link{
+  color:inherit;
+  text-decoration:none;
+  font:9px var(--mono);
+  letter-spacing:.12em;
+  padding:8px 0;
+  position:relative;
+}
+.main-nav .ust-link:after{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:3px;
+  height:1px;
+  background:var(--accent);
+  transition:.22s ease;
+}
+.main-nav .ust-link:hover:after{right:0}
+
+.hero-chat.log-open{cursor:pointer}
+.hero-chat.log-open .chat-window:after{
+  content:"CLICK / RESTORE NEXT MESSAGE";
+  display:block;
+  width:100%;
+  margin:10px 0 2px;
+  text-align:center;
+  font:5px var(--mono);
+  letter-spacing:.12em;
+  color:#aaaeb7;
+  opacity:.8;
+}
+.hero-chat.log-open.chat-complete .chat-window:after{
+  content:"END OF RECOVERED LOG";
+}
+.hero-chat.log-open .chat-top,
+.hero-chat.log-open .chat-input{cursor:default}
+
+@media(max-width:800px){
+  .main-nav .ust-link{font-size:7px}
+}

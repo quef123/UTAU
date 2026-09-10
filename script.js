@@ -228,33 +228,14 @@ const recoveredChatMessages = [
 ];
 
 let recoveredChatStarted = false;
+let recoveredChatIndex = 0;
 
-function makeRecoveredChatItem(item){
-  if(item.type === "system"){
-    const system = document.createElement("div");
-    system.className = "chat-system";
-    system.textContent = item.text;
-    return system;
-  }
-
-  const row = document.createElement("div");
-  row.className = `chat-row ${item.side || "incoming"}`;
-
-  if(item.side === "outgoing"){
-    row.innerHTML = `
-      <div class="chat-bubble"><span class="chat-name">${item.who}</span>${item.text}</div>
-      <span class="chat-time">${item.time}</span>`;
-  }else{
-    row.innerHTML = `
-      <span class="chat-time">${item.time}</span>
-      <div class="chat-bubble"><span class="chat-name">${item.who}</span>${item.text}</div>`;
-  }
-  return row;
-}
-
-function openRecoveredChat(){
+function openRecoveredChat(event){
+  if(event) event.stopPropagation();
   if(recoveredChatStarted) return;
+
   recoveredChatStarted = true;
+  recoveredChatIndex = 0;
 
   const panel = document.getElementById("heroChat");
   const status = document.getElementById("recoveredChatToggle");
@@ -263,38 +244,45 @@ function openRecoveredChat(){
   const inputLabel = panel.querySelector(".chat-input span");
 
   panel.classList.add("log-open");
+  panel.classList.remove("chat-complete");
   status.textContent = "● OFFLINE";
   status.setAttribute("aria-label","recovered chat log offline");
   header.textContent = "RECOVERED CHAT / THREAD 04";
-  inputLabel.textContent = "message field / read only";
+  inputLabel.textContent = "click chat / restore next";
   windowEl.innerHTML = "";
+}
 
-  let index = 0;
-  const pushNext = () => {
-    if(index >= recoveredChatMessages.length){
-      const typing = document.createElement("div");
-      typing.className = "chat-row outgoing";
-      typing.innerHTML = `
-        <div class="chat-bubble typing-bubble"><i></i><i></i><i></i></div>
-        <span class="chat-time">23:56</span>`;
-      windowEl.appendChild(typing);
-      requestAnimationFrame(()=>typing.classList.add("recovered-visible"));
-      windowEl.scrollTop = windowEl.scrollHeight;
-      return;
-    }
+function revealNextRecoveredMessage(event){
+  if(!recoveredChatStarted) return;
 
-    const node = makeRecoveredChatItem(recoveredChatMessages[index++]);
-    windowEl.appendChild(node);
-    requestAnimationFrame(()=>node.classList.add("recovered-visible"));
-    windowEl.scrollTop = windowEl.scrollHeight;
+  if(event){
+    if(event.target.closest(".chat-top") || event.target.closest(".chat-input")) return;
+  }
 
-    const delay = node.classList.contains("chat-system") ? 520 : 330;
-    setTimeout(pushNext, delay);
-  };
-  setTimeout(pushNext, 300);
+  if(recoveredChatIndex >= recoveredChatMessages.length) return;
+
+  const panel = document.getElementById("heroChat");
+  const windowEl = panel.querySelector(".chat-window");
+  const inputLabel = panel.querySelector(".chat-input span");
+
+  const node = makeRecoveredChatItem(recoveredChatMessages[recoveredChatIndex++]);
+  windowEl.appendChild(node);
+
+  requestAnimationFrame(()=>node.classList.add("recovered-visible"));
+  windowEl.scrollTop = windowEl.scrollHeight;
+
+  if(recoveredChatIndex >= recoveredChatMessages.length){
+    panel.classList.add("chat-complete");
+    inputLabel.textContent = "recovered log / complete";
+  }
 }
 
 const recoveredChatToggle = document.getElementById("recoveredChatToggle");
+const recoveredChatPanel = document.getElementById("heroChat");
+
 if(recoveredChatToggle){
   recoveredChatToggle.addEventListener("click",openRecoveredChat);
+}
+if(recoveredChatPanel){
+  recoveredChatPanel.addEventListener("click",revealNextRecoveredMessage);
 }
