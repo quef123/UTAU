@@ -230,6 +230,30 @@ const recoveredChatMessages = [
 let recoveredChatStarted = false;
 let recoveredChatIndex = 0;
 
+function makeRecoveredChatItem(item){
+  if(item.type === "system"){
+    const system = document.createElement("div");
+    system.className = "chat-system";
+    system.textContent = item.text;
+    return system;
+  }
+
+  const row = document.createElement("div");
+  row.className = `chat-row ${item.side || "incoming"}`;
+
+  if(item.side === "outgoing"){
+    row.innerHTML = `
+      <div class="chat-bubble"><span class="chat-name">${item.who}</span>${item.text}</div>
+      <span class="chat-time">${item.time}</span>`;
+  }else{
+    row.innerHTML = `
+      <span class="chat-time">${item.time}</span>
+      <div class="chat-bubble"><span class="chat-name">${item.who}</span>${item.text}</div>`;
+  }
+
+  return row;
+}
+
 function openRecoveredChat(event){
   if(event) event.stopPropagation();
   if(recoveredChatStarted) return;
