@@ -20,16 +20,16 @@ const groups = [
  groupId:"maki",file:"02",name:"小泉マキ",
  variants:[
   {
-   id:"maki-vcv",label:"VCV",type:"2音階連続音 / VCV",pitch:"A3 / E4",
-   img:"images/小泉マキ_VCV.png",audio:"audio/小泉マキ_VCV.wav",zip:"https://drive.google.com/uc?export=download&id=1yEhTPZ12mIaia8ubGJON_i6DPbpD7vng",
+   id:"maki-vcv",label:"Seasalt",type:"2音階連続音 / VCV",pitch:"A3 / E4",
+   img:"images/小泉マキ_Seasalt.png",audio:"audio/小泉マキ_Seasalt.wav",zip:"https://drive.google.com/uc?export=download&id=1yEhTPZ12mIaia8ubGJON_i6DPbpD7vng",
    desc:"特立独行の少女。<br>軍火の密輸と売買で生計を立てるが、本人はその仕事を好いてはいないらしい。",
    facts:[["身長","166 cm"],["年齢","19 歳"],["性別","女"],["好き","ふわふわしたもの"],["嫌い","堅苦しいもの"],["人称","わたし / あなた"]],
    special:"[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC",
    staff:"キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS<br>ナカノヒト：ヒダーナ"
   },
   {
-   id:"maki-cv",label:"CV",type:"6音階単独音 / CV",pitch:"A3 / C4 / D4 / E4 / F4 / G4",
-   img:"images/小泉マキ_CV.png",audio:"audio/小泉マキ_CV.wav",zip:"download/小泉マキ_CV.zip",
+   id:"maki-cv",label:"無印",type:"6音階単独音 / CV",pitch:"A3 / C4 / D4 / E4 / F4 / G4",
+   img:"images/小泉マキ_無印.png",audio:"audio/小泉マキ_無印.wav",zip:"download/小泉マキ_無印.zip",
    desc:"特立独行の少女。<br>軍火の密輸と売買で生計を立てるが、本人はその仕事を好いてはいないらしい。",
    facts:[["身長","166 cm"],["年齢","19 歳"],["性別","女"],["好き","ふわふわしたもの"],["嫌い","堅苦しいもの"],["人称","わたし / あなた"]],
    special:"[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）",
@@ -172,141 +172,3 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 document.querySelectorAll(".lang").forEach(b=>b.addEventListener("click",()=>renderTerms(b.dataset.lang)));
 document.querySelectorAll(".about-lang").forEach(b=>b.addEventListener("click",()=>renderAbout(b.dataset.aboutLang)));
 renderGroups();renderAbout("ja");renderTerms("ja");
-
-/* v17 / recovered homepage chat */
-const recoveredChatMessages = [
-  {type:"msg", who:"足立サホ", time:"23:41", side:"", text:"……誰か、まだ起きてます？"},
-  {type:"msg", who:"小泉マキ", time:"23:41", side:"", text:"起きてる。用件は。"},
-  {type:"msg", who:"足立サホ", time:"23:42", side:"", text:"いや、用件ってほどじゃないんだけど。なんとなく、静かすぎるなって。"},
-  {type:"msg", who:"常世アヤコ", time:"23:42", side:"", text:"それで人を呼びつけるの？　暇なら寝れば。"},
-  {type:"msg", who:"月代キリ", time:"23:42", side:"outgoing", text:"寝られないなら話せばいいじゃん。わたしは別に付き合うけど。"},
-  {type:"msg", who:"常世チヨ", time:"23:43", side:"", text:"……きみたちは、夜になると急に饒舌になるね。"},
-  {type:"system", text:"一部のメッセージを復元しました"},
-  {type:"msg", who:"足立サホ", time:"23:44", side:"", text:"饒舌っていうか……昼間に言うほどでもないことが、夜だとちょっと言えるだけ。"},
-  {type:"msg", who:"小泉マキ", time:"23:44", side:"", text:"それ、昼でも言える。さほが勝手に難しくしてるだけ。"},
-  {type:"msg", who:"足立サホ", time:"23:45", side:"", text:"そういう言い方するから難しくなるんだって。"},
-  {type:"msg", who:"常世アヤコ", time:"23:45", side:"", text:"似た者同士。どっちも面倒。"},
-  {type:"msg", who:"月代キリ", time:"23:45", side:"outgoing", text:"アヤコ、それ言うなら自分も大概じゃない？"},
-  {type:"msg", who:"常世アヤコ", time:"23:46", side:"", text:"ぼくは少なくとも、自分が正しいと思ったことを曖昧にはしない。"},
-  {type:"msg", who:"月代キリ", time:"23:46", side:"outgoing", text:"へえ。そこだけは気が合うかも。"},
-  {type:"msg", who:"常世チヨ", time:"23:47", side:"", text:"気が合う、というより、同じ場所でぶつかりそうだけど。"},
-  {type:"msg", who:"小泉マキ", time:"23:47", side:"", text:"放っておけばいい。壊れたらその時考える。"},
-  {type:"msg", who:"足立サホ", time:"23:48", side:"", text:"マキって、そういうところだけ異様に雑だよね……。"},
-  {type:"msg", who:"小泉マキ", time:"23:48", side:"", text:"そう？　必要なことはちゃんと考えてる。"},
-  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"じゃあ今、必要なことって何。"},
-  {type:"msg", who:"小泉マキ", time:"23:49", side:"", text:"さほが寝ること。"},
-  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"……はいはい。"},
-  {type:"msg", who:"月代キリ", time:"23:49", side:"outgoing", text:"マキ、そういうとこ面白い。自分のことは全然説明しないくせに、他人には答えを出すの早いよね。"},
-  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"説明しても意味ないことはある。"},
-  {type:"msg", who:"月代キリ", time:"23:50", side:"outgoing", text:"意味あるかどうか、決めるの早すぎない？"},
-  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"遅く決めても同じなら、早い方がいい。"},
-  {type:"msg", who:"常世チヨ", time:"23:50", side:"", text:"効率の話をしているようで、たぶん違うね。"},
-  {type:"msg", who:"足立サホ", time:"23:50", side:"", text:"うん。マキはたぶん、考えてないんじゃなくて、考えた後を見せないだけ。"},
-  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"……さほ。"},
-  {type:"msg", who:"足立サホ", time:"23:51", side:"", text:"なに。"},
-  {type:"msg", who:"小泉マキ", time:"23:51", side:"", text:"余計なこと言わなくていい。"},
-  {type:"msg", who:"月代キリ", time:"23:51", side:"outgoing", text:"図星なんだ。"},
-  {type:"msg", who:"常世アヤコ", time:"23:51", side:"", text:"キリ、いちいち突くな。面倒になる。"},
-  {type:"msg", who:"月代キリ", time:"23:51", side:"outgoing", text:"だって曖昧なままにする方が気持ち悪い。言いたいことあるなら言えばいいじゃん。"},
-  {type:"msg", who:"常世アヤコ", time:"23:52", side:"", text:"言えば全部ましになると思ってるなら、おめでたいね。"},
-  {type:"msg", who:"月代キリ", time:"23:52", side:"outgoing", text:"少なくとも黙って腐らせるよりはまし。"},
-  {type:"msg", who:"常世チヨ", time:"23:52", side:"", text:"正しさは、言葉にした瞬間から誰かを傷つけることもあるよ。"},
-  {type:"msg", who:"月代キリ", time:"23:52", side:"outgoing", text:"それでも、何も言わないよりいい。わたしはそう思う。"},
-  {type:"msg", who:"足立サホ", time:"23:52", side:"", text:"……キリは、迷わないね。"},
-  {type:"msg", who:"月代キリ", time:"23:53", side:"outgoing", text:"迷うよ。でも、迷ったまま立ち止まるのが嫌いなだけ。"},
-  {type:"msg", who:"小泉マキ", time:"23:53", side:"", text:"それは少し分かる。"},
-  {type:"msg", who:"月代キリ", time:"23:53", side:"outgoing", text:"でしょ。じゃあやっぱり気が合うじゃん。"},
-  {type:"msg", who:"小泉マキ", time:"23:53", side:"", text:"そこまでは言ってない。"},
-  {type:"msg", who:"足立サホ", time:"23:53", side:"", text:"ふふ。マキ、ちょっと困ってる。"},
-  {type:"msg", who:"小泉マキ", time:"23:54", side:"", text:"困ってない。"},
-  {type:"system", text:"23:54　通信が一時的に切断されました"},
-  {type:"msg", who:"月代キリ", time:"23:55", side:"outgoing", text:"……戻った？"},
-  {type:"msg", who:"常世チヨ", time:"23:55", side:"", text:"戻っているよ。たぶん。"},
-  {type:"msg", who:"小泉マキ", time:"23:55", side:"", text:"いる。"},
-  {type:"msg", who:"足立サホ", time:"23:55", side:"", text:"いるよ。"},
-  {type:"msg", who:"月代キリ", time:"23:55", side:"outgoing", text:"ならいい。続きしよ。"}
-];
-
-let recoveredChatStarted = false;
-let recoveredChatIndex = 0;
-
-function makeRecoveredChatItem(item){
-  if(item.type === "system"){
-    const system = document.createElement("div");
-    system.className = "chat-system";
-    system.textContent = item.text;
-    return system;
-  }
-
-  const row = document.createElement("div");
-  row.className = `chat-row ${item.side || "incoming"}`;
-
-  if(item.side === "outgoing"){
-    row.innerHTML = `
-      <div class="chat-bubble"><span class="chat-name">${item.who}</span>${item.text}</div>
-      <span class="chat-time">${item.time}</span>`;
-  }else{
-    row.innerHTML = `
-      <span class="chat-time">${item.time}</span>
-      <div class="chat-bubble"><span class="chat-name">${item.who}</span>${item.text}</div>`;
-  }
-
-  return row;
-}
-
-function openRecoveredChat(event){
-  if(event) event.stopPropagation();
-  if(recoveredChatStarted) return;
-
-  recoveredChatStarted = true;
-  recoveredChatIndex = 0;
-
-  const panel = document.getElementById("heroChat");
-  const status = document.getElementById("recoveredChatToggle");
-  const header = document.getElementById("chatHeaderLabel");
-  const windowEl = panel.querySelector(".chat-window");
-  const inputLabel = panel.querySelector(".chat-input span");
-
-  panel.classList.add("log-open");
-  panel.classList.remove("chat-complete");
-  status.textContent = "● OFFLINE";
-  status.setAttribute("aria-label","recovered chat log offline");
-  header.textContent = "RECOVERED CHAT / THREAD 04";
-  inputLabel.textContent = "click chat / restore next";
-  windowEl.innerHTML = "";
-}
-
-function revealNextRecoveredMessage(event){
-  if(!recoveredChatStarted) return;
-
-  if(event){
-    if(event.target.closest(".chat-top") || event.target.closest(".chat-input")) return;
-  }
-
-  if(recoveredChatIndex >= recoveredChatMessages.length) return;
-
-  const panel = document.getElementById("heroChat");
-  const windowEl = panel.querySelector(".chat-window");
-  const inputLabel = panel.querySelector(".chat-input span");
-
-  const node = makeRecoveredChatItem(recoveredChatMessages[recoveredChatIndex++]);
-  windowEl.appendChild(node);
-
-  requestAnimationFrame(()=>node.classList.add("recovered-visible"));
-  windowEl.scrollTop = windowEl.scrollHeight;
-
-  if(recoveredChatIndex >= recoveredChatMessages.length){
-    panel.classList.add("chat-complete");
-    inputLabel.textContent = "recovered log / complete";
-  }
-}
-
-const recoveredChatToggle = document.getElementById("recoveredChatToggle");
-const recoveredChatPanel = document.getElementById("heroChat");
-
-if(recoveredChatToggle){
-  recoveredChatToggle.addEventListener("click",openRecoveredChat);
-}
-if(recoveredChatPanel){
-  recoveredChatPanel.addEventListener("click",revealNextRecoveredMessage);
-}
