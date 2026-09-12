@@ -552,3 +552,61 @@ footer{
 @media(max-width:800px){
   .main-nav .ust-link{font-size:7px}
 }
+
+
+/* v22 / normalize interactive header elements */
+
+/* ONLINE: visually remains a status label, not a native browser button */
+.hero-chat .chat-top .chat-status,
+.hero-chat .chat-top button.chat-status{
+  -webkit-appearance:none;
+  appearance:none;
+  border:0 !important;
+  border-radius:0 !important;
+  outline:0;
+  box-shadow:none !important;
+  background:transparent !important;
+  margin:0;
+  padding:0 0 0 10px;
+  width:auto;
+  min-width:0;
+  height:auto;
+  min-height:0;
+  color:var(--accent) !important;
+  font:6px var(--mono) !important;
+  font-weight:400 !important;
+  line-height:1 !important;
+  letter-spacing:.11em !important;
+  text-decoration:none !important;
+  cursor:pointer;
+}
+
+/* UST配布: exactly follow the existing top navigation button typography */
+.main-nav > a.ust-link,
+.main-nav > a.ust-link:link,
+.main-nav > a.ust-link:visited,
+.main-nav > a.ust-link:hover,
+.main-nav > a.ust-link:active{
+  -webkit-appearance:none;
+  appearance:none;
+  border:0;
+  border-radius:0;
+  outline:0;
+  box-shadow:none;
+  background:transparent;
+  margin:0;
+  padding:0;
+  color:var(--ink) !important;
+  font:8px var(--mono) !important;
+  font-weight:400 !important;
+  line-height:1 !important;
+  letter-spacing:.12em !important;
+  text-decoration:none !important;
+  cursor:pointer;
+}
+
+/* remove the temporary custom underline animation from v18 */
+.main-nav > a.ust-link:after{
+  content:none !important;
+  display:none !important;
+}
