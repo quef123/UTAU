@@ -318,3 +318,13 @@ if(recoveredChatToggle){
 if(recoveredChatPanel){
   recoveredChatPanel.addEventListener("click",revealNextRecoveredMessage);
 }
+
+if(recoveredChatToggle){
+  recoveredChatToggle.addEventListener("keydown",(event)=>{
+    if(event.key === "Enter" || event.key === " "){
+      event.preventDefault();
+      openRecoveredChat(event);
+    }
+  });
+}
+

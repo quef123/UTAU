@@ -7,7 +7,7 @@
   <title>HerdMentality</title>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-v23.css?v=20260912-23">
 </head>
 <body>
 <div class="site-shell">
@@ -21,7 +21,7 @@
       <button data-open="update">UPDATE</button>
       <button data-open="about">ABOUT</button>
       <button data-open="terms">TERMS</button>
-      <a class="ust-link" href="https://bowlroll.net/user/922902" target="_blank" rel="noopener noreferrer">UST配布 ↗</a>
+      <button class="ust-link" type="button" onclick="window.open('https://bowlroll.net/user/922902','_blank','noopener,noreferrer')">UST配布 ↗</button>
     </nav>
   </header>
 
@@ -40,7 +40,7 @@
         <div class="hero-chat" id="heroChat">
           <div class="chat-top">
             <span id="chatHeaderLabel">MESSAGE / RECOVERED</span>
-            <button class="chat-status" id="recoveredChatToggle" type="button" aria-label="open recovered chat log">● ONLINE</button>
+            <span class="chat-status" id="recoveredChatToggle" role="button" tabindex="0" aria-label="open recovered chat log">● ONLINE</span>
           </div>
           <div class="chat-window">
             <div class="chat-row incoming chat-1">
@@ -162,6 +162,6 @@
     </div>
   </div>
 </div>
-<script src="script.js"></script>
+<script src="script-v23.js?v=20260912-23"></script>
 </body>
 </html>
