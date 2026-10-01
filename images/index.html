@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#f2f3f5">
+  <title>HerdMentality</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="brand-main">HerdMentality</span>
+      <span class="brand-sub">UTAU VOICE ARCHIVE / QUEF</span>
+    </a>
+    <nav class="main-nav" aria-label="main navigation">
+      <button data-open="voicebank">VOICEBANK</button>
+      <button data-open="update">UPDATE</button>
+      <button data-open="about">ABOUT</button>
+      <button data-open="terms">TERMS</button>
+      <button class="ust-link" type="button" onclick="window.open('https://bowlroll.net/user/922902','_blank','noopener,noreferrer')">UST配布 ↗</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-code">HM / ARCHIVE_2026</div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="eyebrow">RECOVERED MOBILE TERMINAL / VOICE RECORDS</p>
+          <h1><span>Herd</span><br>Mentality</h1>
+          <p class="hero-note">
+            CONTACTS / VOICES / FRAGMENTS<br>
+            extracted from an unidentified device.
+          </p>
+        </div>
+        <div class="hero-chat" id="heroChat">
+          <div class="chat-top">
+            <span id="chatHeaderLabel">MESSAGE / RECOVERED</span>
+            <span class="chat-status" id="recoveredChatToggle" role="button" tabindex="0" aria-label="open recovered chat log">● ONLINE</span>
+          </div>
+          <div class="chat-window">
+            <div class="chat-row incoming chat-1">
+              <span class="chat-time">21:04</span>
+              <div class="chat-bubble">まだ起きてる？</div>
+            </div>
+            <div class="chat-row outgoing chat-2">
+              <div class="chat-bubble">うん。</div>
+              <span class="chat-time">21:05</span>
+            </div>
+            <div class="chat-row incoming chat-3">
+              <span class="chat-time">21:05</span>
+              <div class="chat-bubble">少しだけ話せる？</div>
+            </div>
+            <div class="chat-row incoming chat-typing">
+              <span class="chat-time"></span>
+              <div class="chat-bubble typing-bubble"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <span>message...</span>
+            <b>↗</b>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <span>STATUS : ARCHIVED</span>
+        <span>ACCESS : PUBLIC</span>
+        <span>2026 / QUEF</span>
+      </div>
+    </section>
+
+    <section class="voice-area" id="voicebank">
+      <div class="section-head">
+        <div>
+          <p class="section-index">01 / DATABASE</p>
+          <h2>VOICEBANK</h2>
+        </div>
+        <p class="section-caption">registered voice libraries</p>
+      </div>
+      <div class="voice-grid" id="voiceGrid"></div>
+    </section>
+
+    <section class="update-section" id="update">
+      <div class="section-head">
+        <div>
+          <p class="section-index">02 / LOG</p>
+          <h2>UpDate</h2>
+        </div>
+        <p class="section-caption">distribution / correction records</p>
+      </div>
+      <div class="update-list">
+        <div class="update-entry">
+          <span class="update-date">2026.Sep</span>
+          <span class="update-text">[足立サホ_Cracker],[小泉マキ_Seasalt]音源を配布しています</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="section-head">
+        <div>
+          <p class="section-index">03 / INFORMATION</p>
+          <h2>ABOUT</h2>
+        </div>
+        <div class="lang-switch">
+          <button class="about-lang active" data-about-lang="ja">JP</button>
+          <button class="about-lang" data-about-lang="zh">CN</button>
+        </div>
+      </div>
+      <div class="about-copy" id="aboutContent"></div>
+    </section>
+
+    <section class="terms" id="terms">
+      <div class="section-head">
+        <div>
+          <p class="section-index">04 / POLICY</p>
+          <h2>TERMS</h2>
+        </div>
+        <div class="lang-switch">
+          <button class="lang active" data-lang="ja">JP</button>
+          <button class="lang" data-lang="zh">CN</button>
+        </div>
+      </div>
+      <div class="terms-frame">
+        <div class="terms-copy" id="termsContent"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>HERDMENTALITY</span>
+    <span>UTAU VOICEBANK ARCHIVE</span>
+    <span>QUEF / 2026</span>
+  </footer>
+</div>
+
+<div class="modal" id="voiceModal" aria-hidden="true">
+  <button class="modal-close" id="modalClose" aria-label="close">CLOSE ×</button>
+  <div class="modal-inner">
+    <div class="modal-header">
+      <div>
+        <div class="modal-index" id="modalFile"></div>
+        <h2 id="modalName"></h2>
+      </div>
+      <div class="modal-side">
+        <div class="variant-switch" id="variantSwitch"></div>
+        <div class="modal-type" id="modalType"></div>
+      </div>
+    </div>
+
+    <div class="modal-grid">
+      <div class="modal-art">
+        <div class="target-label">TARGET / <span id="modalId"></span></div>
+        <img id="modalImg" src="" alt="">
+        <div class="art-meta">CHARACTER VISUAL / ORIGINAL COLOR</div>
+      </div>
+      <div class="modal-content" id="modalBody"></div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
