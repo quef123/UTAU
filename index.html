@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>HerdMentality</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="friend-links.css">
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="brand-main">HerdMentality</span>
+      <span class="brand-sub">UTAU VOICE ARCHIVE / QUEF</span>
+    </a>
+    <nav class="main-nav" aria-label="main navigation">
+      <button type="button" data-open="voicebank">VOICEBANK</button>
+      <button type="button" data-open="update">UPDATE</button>
+      <a href="terms.html">利用規約</a>
+      <a class="ust-link" href="https://bowlroll.net/user/922902" target="_blank" rel="noopener noreferrer">UST配布 ↗</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-code">HM / ARCHIVE_2026</div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="eyebrow">RECOVERED MOBILE TERMINAL / VOICE RECORDS</p>
+          <h1>HerdMentality</h1>
+          <p class="hero-note">
+            CONTACTS / VOICES / FRAGMENTS<br>
+            extracted from an unidentified device.
+          </p>
+        </div>
+        <div class="hero-chat" id="heroChat">
+          <div class="chat-top">
+            <span id="chatHeaderLabel">MESSAGE / RECOVERED</span>
+            <button type="button" class="chat-status" id="recoveredChatToggle" aria-controls="recoveredChatWindow" aria-expanded="false" aria-label="open recovered chat log">● ONLINE</button>
+          </div>
+          <div class="chat-window" id="recoveredChatWindow">
+            <div class="chat-row incoming chat-1">
+              <span class="chat-time">21:04</span>
+              <div class="chat-bubble">まだ起きてる？</div>
+            </div>
+            <div class="chat-row outgoing chat-2">
+              <div class="chat-bubble">うん。</div>
+              <span class="chat-time">21:05</span>
+            </div>
+            <div class="chat-row incoming chat-3">
+              <span class="chat-time">21:05</span>
+              <div class="chat-bubble">少しだけ話せる？</div>
+            </div>
+            <div class="chat-row incoming chat-typing">
+              <span class="chat-time"></span>
+              <div class="chat-bubble typing-bubble"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <span>message...</span>
+            <b>↗</b>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <span>STATUS : ARCHIVED</span>
+        <span>ACCESS : PUBLIC</span>
+        <span>2026 / QUEF</span>
+      </div>
+    </section>
+
+    <section class="voice-area" id="voicebank">
+      <div class="section-head">
+        <div>
+          <p class="section-index">01 / DATABASE</p>
+          <h2>VOICEBANK</h2>
+        </div>
+        <p class="section-caption">registered voice libraries</p>
+      </div>
+      <div class="voice-grid" id="voiceGrid"></div>
+    </section>
+
+    <section class="update-section" id="update">
+      <div class="section-head">
+        <div>
+          <p class="section-index">02 / LOG</p>
+          <h2>UpDate</h2>
+        </div>
+        <p class="section-caption">distribution / correction records</p>
+      </div>
+      <div class="update-list">
+        <div class="update-entry">
+          <span class="update-date">2026.Sep</span>
+          <span class="update-text">[足立サホ_Cracker],[小泉マキ_Seasalt]音源を配布しています</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="terms" id="terms">
+      <div class="section-head">
+        <div>
+          <p class="section-index">03 / POLICY</p>
+          <h2>利用規約</h2>
+        </div>
+        <p class="section-caption">TERMS OF USE</p>
+      </div>
+      <div class="terms-link-area">
+        <p>音声ライブラリ・キャラクター・公式素材の利用条件を、項目ごとにご確認いただけます。</p>
+        <a href="terms.html">利用規約を読む ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Small footer easter egg: images and URLs are configured in friend-links-data.js. -->
+  <section class="friendlinks-zone" aria-label="隠し友情链接 / 外部音源配布サイト">
+    <div class="friendlinks-device" id="friendlinksDevice">
+      <div class="friendlinks-figure">
+      <button class="friendlinks-trigger" type="button" id="friendlinksTrigger"
+              aria-label="隠れたリンクを開く" aria-expanded="false" aria-controls="friendlinksMagazine">
+        <img src="images/links/gun.png" alt="" width="1040" height="660" draggable="false">
+      </button>
+      <div class="friendlinks-magazine" id="friendlinksMagazine" aria-hidden="true">
+        <img class="friendlinks-magazine-image" src="images/links/magazine.png" alt=""
+             width="320" height="580" draggable="false">
+        <div class="friendlinks-rounds" id="friendlinksRounds"></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>HERDMENTALITY</span>
+    <span>UTAU VOICEBANK ARCHIVE</span>
+    <span>QUEF / 2026</span>
+  </footer>
+</div>
+
+<div class="modal" id="voiceModal" role="dialog" aria-modal="true" aria-labelledby="modalName" aria-hidden="true">
+  <button class="modal-close" id="modalClose" aria-label="close">CLOSE ×</button>
+  <div class="modal-inner">
+    <div class="modal-header">
+      <div>
+        <div class="modal-index" id="modalFile"></div>
+        <h2 id="modalName"></h2>
+      </div>
+      <div class="modal-side">
+        <div class="variant-switch" id="variantSwitch"></div>
+        <div class="modal-type" id="modalType"></div>
+      </div>
+    </div>
+
+    <div class="modal-grid">
+      <div class="modal-art">
+        <div class="target-label">TARGET / <span id="modalId"></span></div>
+        <img id="modalImg" alt="">
+        <div class="art-meta">CHARACTER VISUAL / ORIGINAL COLOR</div>
+      </div>
+      <div class="modal-content" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Only 足立サホ uses this reference-based layout. The original view remains for all other characters. -->
+  <article class="saho-detail" id="sahoDetail" hidden>
+    <nav class="saho-detail-nav" aria-label="キャラクター詳細ナビゲーション">
+      <button type="button" id="sahoBack">← VOICEBANK INDEX</button>
+      <div class="saho-detail-nav-right">
+        <button type="button" id="sahoTerms">利用条約</button>
+        <a href="https://bowlroll.net/user/922902" target="_blank" rel="noopener noreferrer">UST配布 ↗</a>
+      </div>
+    </nav>
+
+    <!-- No invented player: this section only appears if the selected variant has a valid YouTube URL. -->
+    <section class="saho-video" id="sahoVideo" aria-label="音源配布動画" hidden>
+      <iframe id="sahoVideoFrame" title="足立サホ 音源配布動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <div class="saho-columns">
+      <div class="saho-portrait">
+        <img id="sahoPortrait" alt="" decoding="async">
+      </div>
+      <div class="saho-reading">
+        <header class="saho-person">
+          <h2 id="sahoName">足立サホ</h2>
+          <p id="sahoRoman">ADACHI SAHO</p>
+        </header>
+        <div class="saho-story" id="sahoStory"></div>
+        <div class="saho-variants" id="sahoVariants" role="group" aria-label="音源バージョン"></div>
+        <div class="saho-specs" aria-label="音源情報">
+          <p id="sahoFormat"></p>
+          <p id="sahoPitch"></p>
+        </div>
+        <div class="saho-audio" aria-label="試聴プレイヤー">
+          <audio id="sahoAudio" preload="metadata"></audio>
+          <button type="button" id="sahoPlay" class="saho-play" aria-label="試聴を再生" aria-pressed="false"><span aria-hidden="true">▶</span></button>
+          <input id="sahoSeek" class="saho-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="音源の再生位置">
+          <div class="saho-times" aria-live="off"><span id="sahoCurrent">0:00</span><span class="time-slash">/</span><span id="sahoDuration">--:--</span></div>
+        </div>
+        <p class="saho-player-note" id="sahoAudioStatus" role="status" aria-live="polite"></p>
+        <a id="sahoDownload" class="saho-download" href="#">DOWNLOAD ↗</a>
+        <details class="saho-additional">
+          <summary>PROFILE / SPECIAL PHONEMES</summary>
+          <div class="saho-additional-body">
+            <dl id="sahoFacts"></dl>
+            <div class="saho-phonemes" id="sahoSpecial"></div>
+          </div>
+        </details>
+      </div>
+    </div>
+    <footer class="saho-staff" aria-label="制作クレジット" id="sahoStaff"></footer>
+  </article>
+</div>
+<script src="script.js"></script>
+<script src="friend-links-data.js"></script>
+<script src="friend-links.js"></script>
+</body>
+</html>

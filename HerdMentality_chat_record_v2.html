@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HerdMentality — Recovered Chat Log</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2f3f5;
+  --panel:#f7f7f8;
+  --ink:#252933;
+  --muted:#7d8290;
+  --line:#cbd0da;
+  --accent:#8f91aa;
+  --accent-soft:#e9e9f0;
+  --mono:Menlo,Monaco,Consolas,"Liberation Mono","Yu Gothic","Hiragino Kaku Gothic ProN",monospace;
+  --serif:Georgia,"Times New Roman","Yu Mincho","Hiragino Mincho ProN",serif;
+}
+html,body{min-height:100%}
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+}
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{
+  width:min(780px,96vw);
+  border:1px solid var(--line);
+  background:rgba(247,247,248,.72);
+  box-shadow:0 18px 55px rgba(40,45,55,.08);
+}
+.topbar{
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  border-bottom:1px solid var(--line);
+  font:8px var(--mono);
+  letter-spacing:.12em;
+  color:var(--muted);
+}
+.status{color:var(--accent)}
+.chat{
+  height:min(650px,72vh);
+  overflow-y:auto;
+  padding:24px 22px 28px;
+  scroll-behavior:smooth;
+}
+.chat::-webkit-scrollbar{width:4px}
+.chat::-webkit-scrollbar-thumb{background:var(--accent)}
+.day{
+  text-align:center;
+  margin:8px 0 24px;
+  font:7px var(--mono);
+  letter-spacing:.12em;
+  color:var(--muted);
+}
+.msg{
+  display:flex;
+  gap:10px;
+  align-items:flex-end;
+  margin:0 0 16px;
+  opacity:0;
+  transform:translateY(12px);
+  animation:pop .36s ease forwards;
+}
+.msg.self{justify-content:flex-end}
+.meta{
+  width:96px;
+  flex:0 0 96px;
+  padding-bottom:5px;
+  font:7px/1.45 var(--mono);
+  color:var(--muted);
+}
+.self .meta{text-align:right;order:2}
+.bubble{
+  max-width:min(470px,72%);
+  border:1px solid var(--line);
+  background:#fff;
+  padding:11px 13px 12px;
+  font-size:13px;
+  line-height:1.75;
+  letter-spacing:.01em;
+}
+.self .bubble{
+  background:var(--accent-soft);
+}
+.name{
+  display:block;
+  margin-bottom:4px;
+  font:8px var(--mono);
+  letter-spacing:.08em;
+  color:var(--accent);
+}
+.system{
+  margin:22px 0;
+  text-align:center;
+  color:#9297a2;
+  font:7px var(--mono);
+  letter-spacing:.1em;
+  opacity:0;
+  animation:fade .4s ease forwards;
+}
+.typing{
+  display:flex;
+  gap:4px;
+  align-items:center;
+  width:44px;
+  height:28px;
+}
+.typing i{
+  display:block;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--muted);
+  animation:dot 1s infinite ease-in-out;
+}
+.typing i:nth-child(2){animation-delay:.15s}
+.typing i:nth-child(3){animation-delay:.3s}
+.bottom{
+  min-height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  border-top:1px solid var(--line);
+  color:#9da1aa;
+  font:8px var(--mono);
+  letter-spacing:.08em;
+}
+.cursor{animation:blink 1s step-end infinite}
+@keyframes pop{to{opacity:1;transform:translateY(0)}}
+@keyframes fade{to{opacity:1}}
+@keyframes dot{
+  0%,60%,100%{opacity:.22;transform:translateY(0)}
+  30%{opacity:1;transform:translateY(-3px)}
+}
+@keyframes blink{50%{opacity:0}}
+
+@media(max-width:600px){
+  body{padding:10px}
+  .chat{height:78vh;padding:18px 12px 24px}
+  .meta{width:67px;flex-basis:67px;font-size:6px}
+  .bubble{max-width:76%;font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span>RECOVERED CHAT / THREAD 04</span>
+    <span class="status">● ACTIVE LOG</span>
+  </div>
+
+  <div class="chat" id="chat">
+    <div class="day">2026 / 09 / 09　23:41</div>
+  </div>
+
+  <div class="bottom">
+    <span>message field / read only</span>
+    <span>restoring log<span class="cursor">_</span></span>
+  </div>
+</div>
+
+<script>
+const messages = [
+  {type:"msg", who:"足立サホ", time:"23:41", side:"", text:"……誰か、まだ起きてます？"},
+  {type:"msg", who:"小泉マキ", time:"23:41", side:"", text:"起きてる。用件は。"},
+  {type:"msg", who:"足立サホ", time:"23:42", side:"", text:"いや、用件ってほどじゃないんだけど。なんとなく、静かすぎるなって。"},
+  {type:"msg", who:"常世アヤコ", time:"23:42", side:"", text:"それで人を呼びつけるの？　暇なら寝れば。"},
+  {type:"msg", who:"月代キリ", time:"23:42", side:"self", text:"寝られないなら話せばいいじゃん。わたしは別に付き合うけど。"},
+  {type:"msg", who:"常世チヨ", time:"23:43", side:"", text:"……きみたちは、夜になると急に饒舌になるね。"},
+  {type:"system", text:"一部のメッセージを復元しました"},
+  {type:"msg", who:"足立サホ", time:"23:44", side:"", text:"饒舌っていうか……昼間に言うほどでもないことが、夜だとちょっと言えるだけ。"},
+  {type:"msg", who:"小泉マキ", time:"23:44", side:"", text:"それ、昼でも言える。さほが勝手に難しくしてるだけ。"},
+  {type:"msg", who:"足立サホ", time:"23:45", side:"", text:"そういう言い方するから難しくなるんだって。"},
+  {type:"msg", who:"常世アヤコ", time:"23:45", side:"", text:"似た者同士。どっちも面倒。"},
+  {type:"msg", who:"月代キリ", time:"23:45", side:"self", text:"アヤコ、それ言うなら自分も大概じゃない？"},
+  {type:"msg", who:"常世アヤコ", time:"23:46", side:"", text:"ぼくは少なくとも、自分が正しいと思ったことを曖昧にはしない。"},
+  {type:"msg", who:"月代キリ", time:"23:46", side:"self", text:"へえ。そこだけは気が合うかも。"},
+  {type:"msg", who:"常世チヨ", time:"23:47", side:"", text:"気が合う、というより、同じ場所でぶつかりそうだけど。"},
+  {type:"msg", who:"小泉マキ", time:"23:47", side:"", text:"放っておけばいい。壊れたらその時考える。"},
+  {type:"msg", who:"足立サホ", time:"23:48", side:"", text:"マキって、そういうところだけ異様に雑だよね……。"},
+  {type:"msg", who:"小泉マキ", time:"23:48", side:"", text:"そう？　必要なことはちゃんと考えてる。"},
+  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"じゃあ今、必要なことって何。"},
+  {type:"msg", who:"小泉マキ", time:"23:49", side:"", text:"さほが寝ること。"},
+  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"……はいはい。"},
+  {type:"msg", who:"月代キリ", time:"23:49", side:"self", text:"マキ、そういうとこ面白い。自分のことは全然説明しないくせに、他人には答えを出すの早いよね。"},
+  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"説明しても意味ないことはある。"},
+  {type:"msg", who:"月代キリ", time:"23:50", side:"self", text:"意味あるかどうか、決めるの早すぎない？"},
+  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"遅く決めても同じなら、早い方がいい。"},
+  {type:"msg", who:"常世チヨ", time:"23:50", side:"", text:"効率の話をしているようで、たぶん違うね。"},
+  {type:"msg", who:"足立サホ", time:"23:50", side:"", text:"うん。マキはたぶん、考えてないんじゃなくて、考えた後を見せないだけ。"},
+  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"……さほ。"},
+  {type:"msg", who:"足立サホ", time:"23:51", side:"", text:"なに。"},
+  {type:"msg", who:"小泉マキ", time:"23:51", side:"", text:"余計なこと言わなくていい。"},
+  {type:"msg", who:"月代キリ", time:"23:51", side:"self", text:"図星なんだ。"},
+  {type:"msg", who:"常世アヤコ", time:"23:51", side:"", text:"キリ、いちいち突くな。面倒になる。"},
+  {type:"msg", who:"月代キリ", time:"23:51", side:"self", text:"だって曖昧なままにする方が気持ち悪い。言いたいことあるなら言えばいいじゃん。"},
+  {type:"msg", who:"常世アヤコ", time:"23:52", side:"", text:"言えば全部ましになると思ってるなら、おめでたいね。"},
+  {type:"msg", who:"月代キリ", time:"23:52", side:"self", text:"少なくとも黙って腐らせるよりはまし。"},
+  {type:"msg", who:"常世チヨ", time:"23:52", side:"", text:"正しさは、言葉にした瞬間から誰かを傷つけることもあるよ。"},
+  {type:"msg", who:"月代キリ", time:"23:52", side:"self", text:"それでも、何も言わないよりいい。わたしはそう思う。"},
+  {type:"msg", who:"足立サホ", time:"23:52", side:"", text:"……キリは、迷わないね。"},
+  {type:"msg", who:"月代キリ", time:"23:53", side:"self", text:"迷うよ。でも、迷ったまま立ち止まるのが嫌いなだけ。"},
+  {type:"msg", who:"小泉マキ", time:"23:53", side:"", text:"それは少し分かる。"},
+  {type:"msg", who:"月代キリ", time:"23:53", side:"self", text:"でしょ。じゃあやっぱり気が合うじゃん。"},
+  {type:"msg", who:"小泉マキ", time:"23:53", side:"", text:"そこまでは言ってない。"},
+  {type:"msg", who:"足立サホ", time:"23:53", side:"", text:"ふふ。マキ、ちょっと困ってる。"},
+  {type:"msg", who:"小泉マキ", time:"23:54", side:"", text:"困ってない。"},
+  {type:"system", text:"23:54　通信が一時的に切断されました"},
+  {type:"msg", who:"月代キリ", time:"23:55", side:"self", text:"……戻った？"},
+  {type:"msg", who:"常世チヨ", time:"23:55", side:"", text:"戻っているよ。たぶん。"},
+  {type:"msg", who:"小泉マキ", time:"23:55", side:"", text:"いる。"},
+  {type:"msg", who:"足立サホ", time:"23:55", side:"", text:"いるよ。"},
+  {type:"msg", who:"月代キリ", time:"23:55", side:"self", text:"ならいい。続きしよ。"}
+];
+
+const chat = document.getElementById("chat");
+
+function addMessage(item){
+  if(item.type==="system"){
+    const el=document.createElement("div");
+    el.className="system";
+    el.textContent=item.text;
+    chat.appendChild(el);
+    return;
+  }
+  const row=document.createElement("div");
+  row.className="msg "+(item.side||"");
+  row.innerHTML=`
+    <div class="meta">${item.time}</div>
+    <div class="bubble">
+      <span class="name">${item.who}</span>
+      ${item.text}
+    </div>`;
+  chat.appendChild(row);
+}
+
+function addTyping(){
+  const row=document.createElement("div");
+  row.className="msg self";
+  row.id="typing";
+  row.innerHTML=`
+    <div class="meta">23:56</div>
+    <div class="bubble typing">
+      <i></i><i></i><i></i>
+    </div>`;
+  chat.appendChild(row);
+}
+
+let i=0;
+function next(){
+  if(i < messages.length){
+    addMessage(messages[i]);
+    i++;
+    chat.scrollTop=chat.scrollHeight;
+    setTimeout(next, i===1 ? 700 : 1050);
+  }else{
+    addTyping();
+    chat.scrollTop=chat.scrollHeight;
+  }
+}
+setTimeout(next,700);
+</script>
+</body>
+</html>
