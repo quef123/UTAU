@@ -3,10 +3,10 @@ const sahoProfile = [
  ["好き","古籍、プリン"],["嫌い","捉摸しにくい変人"],["人称","わたし / あなた"]
 ];
 const sahoDesc = "気弱な自称陽キャ，すぐに色々と考えすぎてしまう。<br>元・ネット小説作家、現在はフリーランスの掃除屋。";
-const sahoSpecial = "[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC";
-const sahoStaff = "キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS<br>ナカノヒト：ヒナ";
+const detailSpecial = "[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC";
+const detailStaff = "キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS<br>ナカノヒト：ヒナ";
 
-const sahoCommon = {desc:sahoDesc,facts:sahoProfile,special:sahoSpecial,staff:sahoStaff};
+const sahoCommon = {desc:sahoDesc,facts:sahoProfile,special:detailSpecial,staff:detailStaff};
 
 const makiDesc = "特立独行の少女。<br>軍火の密輸と売買で生計を立てるが、本人はその仕事を好いてはいないらしい。";
 const makiFacts = [["身長","166 cm"],["年齢","19 歳"],["性別","女"],["好き","ふわふわしたもの"],["嫌い","堅苦しいもの"],["人称","わたし / あなた"]];
@@ -90,12 +90,7 @@ const groups = [
 let currentGroup=null,currentVariantIndex=0;
 let previousFocus=null,previousBodyOverflow="";
 const modal=document.getElementById("voiceModal");
-const modalImage=document.getElementById("modalImg");
 const pageShell=document.querySelector(".site-shell");
-
-// If a character asset is not installed, keep the reserved whitespace, not a broken image icon.
-modalImage.addEventListener("error",()=>{modalImage.hidden=true});
-modalImage.addEventListener("load",()=>{modalImage.hidden=false});
 
 function renderGroups(){
  const grid=document.getElementById("voiceGrid");
@@ -123,16 +118,22 @@ function openGroup(index){
  pageShell.inert=true;
  requestAnimationFrame(()=>{
    if(modal.classList.contains("open"))
-     (currentGroup.groupId === "saho" ? document.getElementById("sahoBack") : document.getElementById("modalClose")).focus();
+     document.getElementById("detailBack").focus();
  });
 }
-/* 足立サホ — high-fidelity reference layout; other characters keep the existing modal. */
-const sahoAudio = document.getElementById("sahoAudio");
-const sahoPlay = document.getElementById("sahoPlay");
-const sahoSeek = document.getElementById("sahoSeek");
-const sahoAudioStatus = document.getElementById("sahoAudioStatus");
-let sahoPlaybackAttempted = false;
-const romanNames = {saho:"ADACHI SAHO"};
+/* Character reference layout — all five groups share this view. */
+const detailAudio = document.getElementById("detailAudio");
+const detailPlay = document.getElementById("detailPlay");
+const detailSeek = document.getElementById("detailSeek");
+const detailAudioStatus = document.getElementById("detailAudioStatus");
+let detailPlaybackAttempted = false;
+const romanNames = {
+ saho:"ADACHI SAHO",
+ maki:"KOIZUMI MAKI",
+ ayako:"TOKOYO AYAKO",
+ chiyo:"TOKOYO CHIYO",
+ kiri:"TSUKISHIRO KIRI"
+};
 function timeLabel(seconds){
  if(!Number.isFinite(seconds)) return "--:--";
  const n=Math.max(0,Math.floor(seconds));
@@ -152,45 +153,47 @@ function extractYoutubeId(url){
    return /^[A-Za-z0-9_-]{11}$/.test(id||"") ? id : null;
  }catch{return null;}
 }
-function stopSahoMedia(){
- sahoAudio.pause();
- const frame=document.getElementById("sahoVideoFrame");
+function stopDetailMedia(){
+ detailAudio.pause();
+ const frame=document.getElementById("detailVideoFrame");
  frame.removeAttribute("src");
 }
-function updateSahoAudioUI(){
- const playing = !sahoAudio.paused && !sahoAudio.ended;
- sahoPlay.querySelector("span").textContent=playing?"Ⅱ":"▶";
- sahoPlay.setAttribute("aria-label",playing?"試聴を一時停止":"試聴を再生");
- sahoPlay.setAttribute("aria-pressed",String(playing));
- document.getElementById("sahoCurrent").textContent=timeLabel(sahoAudio.currentTime||0);
- document.getElementById("sahoDuration").textContent=timeLabel(sahoAudio.duration);
- sahoSeek.value=(Number.isFinite(sahoAudio.duration) && sahoAudio.duration>0)
-  ? String(Math.round(sahoAudio.currentTime / sahoAudio.duration * 1000)) : "0";
+function updateDetailAudioUI(){
+ const playing = !detailAudio.paused && !detailAudio.ended;
+ detailPlay.querySelector("span").textContent=playing?"Ⅱ":"▶";
+ detailPlay.setAttribute("aria-label",playing?"試聴を一時停止":"試聴を再生");
+ detailPlay.setAttribute("aria-pressed",String(playing));
+ document.getElementById("detailCurrent").textContent=timeLabel(detailAudio.currentTime||0);
+ document.getElementById("detailDuration").textContent=timeLabel(detailAudio.duration);
+ detailSeek.value=(Number.isFinite(detailAudio.duration) && detailAudio.duration>0)
+  ? String(Math.round(detailAudio.currentTime / detailAudio.duration * 1000)) : "0";
 }
-function renderSahoReference(g,v){
- document.getElementById("sahoName").textContent=g.name;
- document.getElementById("sahoRoman").textContent=romanNames[g.groupId]||"";
- document.getElementById("sahoStory").innerHTML=v.desc;
+function renderDetailReference(g,v){
+ document.getElementById("detailName").textContent=g.name;
+ document.getElementById("detailRoman").textContent=romanNames[g.groupId]||"";
+ document.getElementById("detailStory").innerHTML=v.desc;
  const videoUrl=v.video||g.video||null;
  const videoId=extractYoutubeId(videoUrl);
- const videoSection=document.getElementById("sahoVideo");
- const frame=document.getElementById("sahoVideoFrame");
+ const videoSection=document.getElementById("detailVideo");
+ const frame=document.getElementById("detailVideoFrame");
  frame.removeAttribute("src");
+ frame.title=`${g.name} 音源配布動画`;
  videoSection.hidden=!videoId;
  if(videoId) frame.src=`https://www.youtube-nocookie.com/embed/${videoId}`;
- document.getElementById("sahoPortrait").hidden=false;
- const art=document.getElementById("sahoPortrait");
+ document.getElementById("detailPortrait").hidden=false;
+ const art=document.getElementById("detailPortrait");
  art.src=v.img;
  art.alt=`${g.name} ${v.label} 立ち絵`;
- const versions=document.getElementById("sahoVariants");
- versions.innerHTML=g.variants.map((item,i)=>`<button type="button" class="saho-variant ${i===currentVariantIndex?'active':''}" aria-pressed="${i===currentVariantIndex}" data-saho-variant="${i}">${item.label}</button>`).join("");
- document.getElementById("sahoFormat").textContent=`VOICEBANK / ${v.type}`;
- document.getElementById("sahoPitch").textContent=v.pitch;
- const facts=document.getElementById("sahoFacts");
+ const versions=document.getElementById("detailVariants");
+ versions.hidden=g.variants.length<2;
+ versions.innerHTML=g.variants.map((item,i)=>`<button type="button" class="detail-variant ${i===currentVariantIndex?'active':''}" aria-pressed="${i===currentVariantIndex}" data-detail-variant="${i}">${item.label}</button>`).join("");
+ document.getElementById("detailFormat").textContent=`VOICEBANK / ${v.type}`;
+ document.getElementById("detailPitch").textContent=v.pitch;
+ const facts=document.getElementById("detailFacts");
  facts.innerHTML=v.facts.map(([label,value])=>`<div><dt>${label}</dt><dd>${value}</dd></div>`).join("");
- document.getElementById("sahoSpecial").innerHTML=v.special;
- document.getElementById("sahoStaff").innerHTML=v.staff;
- const dl=document.getElementById("sahoDownload");
+ document.getElementById("detailSpecial").innerHTML=v.special;
+ document.getElementById("detailStaff").innerHTML=v.staff;
+ const dl=document.getElementById("detailDownload");
  dl.href=v.zip;
  dl.removeAttribute("download");
  dl.removeAttribute("target");
@@ -199,90 +202,61 @@ function renderSahoReference(g,v){
    dl.target="_blank";
    dl.rel="noopener noreferrer";
  }else dl.setAttribute("download",v.zip.split("/").pop());
- sahoAudio.pause();
- sahoAudio.src=v.audio;
- sahoAudio.load();
- sahoPlaybackAttempted=false;
- sahoAudioStatus.textContent="";
- updateSahoAudioUI();
+ detailAudio.pause();
+ detailAudio.src=v.audio;
+ detailAudio.load();
+ detailPlaybackAttempted=false;
+ detailAudioStatus.textContent="";
+ updateDetailAudioUI();
 }
-function showSahoAudioError(){
- if(sahoPlaybackAttempted) sahoAudioStatus.textContent="試聴ファイルを読み込めませんでした。";
- updateSahoAudioUI();
+function showDetailAudioError(){
+ if(detailPlaybackAttempted) detailAudioStatus.textContent="試聴ファイルを読み込めませんでした。";
+ updateDetailAudioUI();
 }
-sahoAudio.addEventListener("timeupdate",updateSahoAudioUI);
-sahoAudio.addEventListener("durationchange",updateSahoAudioUI);
-sahoAudio.addEventListener("loadedmetadata",updateSahoAudioUI);
-sahoAudio.addEventListener("pause",updateSahoAudioUI);
-sahoAudio.addEventListener("play",updateSahoAudioUI);
-sahoAudio.addEventListener("ended",updateSahoAudioUI);
-sahoAudio.addEventListener("error",showSahoAudioError);
-sahoPlay.addEventListener("click",async()=>{
- if(!sahoAudio.paused){sahoAudio.pause();return;}
- sahoPlaybackAttempted=true;
- sahoAudioStatus.textContent="";
- try{await sahoAudio.play()}catch{showSahoAudioError()}
+detailAudio.addEventListener("timeupdate",updateDetailAudioUI);
+detailAudio.addEventListener("durationchange",updateDetailAudioUI);
+detailAudio.addEventListener("loadedmetadata",updateDetailAudioUI);
+detailAudio.addEventListener("pause",updateDetailAudioUI);
+detailAudio.addEventListener("play",updateDetailAudioUI);
+detailAudio.addEventListener("ended",updateDetailAudioUI);
+detailAudio.addEventListener("error",showDetailAudioError);
+detailPlay.addEventListener("click",async()=>{
+ if(!detailAudio.paused){detailAudio.pause();return;}
+ detailPlaybackAttempted=true;
+ detailAudioStatus.textContent="";
+ try{await detailAudio.play()}catch{showDetailAudioError()}
 });
-sahoSeek.addEventListener("input",()=>{
- if(Number.isFinite(sahoAudio.duration) && sahoAudio.duration>0){
-   sahoAudio.currentTime=Number(sahoSeek.value)/1000*sahoAudio.duration;
+detailSeek.addEventListener("input",()=>{
+ if(Number.isFinite(detailAudio.duration) && detailAudio.duration>0){
+   detailAudio.currentTime=Number(detailSeek.value)/1000*detailAudio.duration;
  }
 });
-document.getElementById("sahoPortrait").addEventListener("error",event=>{event.target.hidden=true});
-document.getElementById("sahoPortrait").addEventListener("load",event=>{event.target.hidden=false});
-document.getElementById("sahoVariants").addEventListener("click",event=>{
- const button=event.target.closest("[data-saho-variant]");
+document.getElementById("detailPortrait").addEventListener("error",event=>{event.target.hidden=true});
+document.getElementById("detailPortrait").addEventListener("load",event=>{event.target.hidden=false});
+document.getElementById("detailVariants").addEventListener("click",event=>{
+ const button=event.target.closest("[data-detail-variant]");
  if(!button) return;
- const index=Number(button.dataset.sahoVariant);
+ const index=Number(button.dataset.detailVariant);
  if(index===currentVariantIndex) return;
  currentVariantIndex=index;
  renderVariant();
- document.querySelector(`#sahoVariants [data-saho-variant="${index}"]`)?.focus();
+ document.querySelector(`#detailVariants [data-detail-variant="${index}"]`)?.focus();
 });
-document.getElementById("sahoBack").addEventListener("click",closeModal);
-document.getElementById("sahoTerms").addEventListener("click",()=>{
+document.getElementById("detailBack").addEventListener("click",closeModal);
+document.getElementById("detailTerms").addEventListener("click",()=>{
  window.location.href="terms.html";
 });
 
 function renderVariant(){
- const g=currentGroup,v=g.variants[currentVariantIndex];
- document.querySelector("#modalBody audio")?.pause();
- const isSaho = g.groupId === "saho";
- modal.classList.toggle("saho-reference", isSaho);
- modal.setAttribute("aria-labelledby",isSaho?"sahoName":"modalName");
- document.getElementById("sahoDetail").hidden = !isSaho;
- if(isSaho){
-   renderSahoReference(g,v);
-   return;
- }
- stopSahoMedia();
- document.getElementById("modalFile").textContent=`FILE ${g.file} / VOICEBANK`;
- document.getElementById("modalName").textContent=g.name;
- document.getElementById("modalType").textContent=`${v.type}　/　${v.pitch}`;
- document.getElementById("modalId").textContent=v.id;
- const sw=document.getElementById("variantSwitch");
- sw.innerHTML=g.variants.length>1?g.variants.map((x,i)=>`<button type="button" class="variant-btn ${i===currentVariantIndex?'active':''}" aria-pressed="${i===currentVariantIndex}" data-variant="${i}">${x.label}</button>`).join(""):"";
- modalImage.hidden=false;
- modalImage.src=v.img;
- modalImage.alt=`${g.name} ${v.label}`;
- const facts=v.facts.map(x=>`<p><b>${x[0]}</b>　${x[1]}</p>`).join("");
- const external=/^https?:\/\//.test(v.zip);
- const downloadAttrs=external?'target="_blank" rel="noopener noreferrer"':'download';
- const downloadName=external?`${g.name}_${v.label}.zip`:v.zip.split("/").pop();
- document.getElementById("modalBody").innerHTML=`
-  <div class="block"><span class="label">DESCRIPTION</span><p>${v.desc}</p></div>
-  <div class="block"><span class="label">PROFILE</span>${facts}</div>
-  <div class="block"><span class="label">FORMAT</span><p>${v.type}</p></div>
-  <div class="block"><span class="label">PITCH</span><p>${v.pitch}</p></div>
-  <div class="block"><span class="label">SPECIAL PHONEMES</span><p>${v.special}</p></div>
-  <div class="block"><span class="label">STAFF</span><p>${v.staff}</p></div>
-  <div class="block"><span class="label">TRIAL / 試聴</span><audio controls preload="none" aria-label="${g.name} ${v.label} 試聴"><source src="${v.audio}" type="audio/wav"></audio></div>
-  <div class="block"><a class="download" href="${v.zip}" ${downloadAttrs}>DOWNLOAD ↓<small>${downloadName}</small></a></div>`;
+ const g=currentGroup, v=g.variants[currentVariantIndex];
+ modal.classList.add("detail-reference");
+ modal.setAttribute("aria-labelledby","detailName");
+ document.getElementById("detailView").hidden=false;
+ renderDetailReference(g,v);
 }
 function closeModal(){
  if(!modal.classList.contains("open")) return;
- document.querySelector("#modalBody audio")?.pause();
- stopSahoMedia();
+ stopDetailMedia();
  modal.classList.remove("open");
  modal.setAttribute("aria-hidden","true");
  document.body.style.overflow=previousBodyOverflow;
@@ -290,7 +264,6 @@ function closeModal(){
  previousFocus?.focus();
 }
 document.querySelectorAll("[data-open]").forEach(button=>button.addEventListener("click",()=>document.getElementById(button.dataset.open).scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})));
-document.getElementById("modalClose").addEventListener("click",closeModal);
 modal.addEventListener("click",event=>{if(event.target===modal)closeModal()});
 document.addEventListener("keydown",event=>{
  if(!modal.classList.contains("open")) return;
@@ -301,13 +274,6 @@ document.addEventListener("keydown",event=>{
  const first=focusable[0],last=focusable[focusable.length-1];
  if(event.shiftKey && (document.activeElement===first || !modal.contains(document.activeElement))){event.preventDefault();last.focus()}
  else if(!event.shiftKey && (document.activeElement===last || !modal.contains(document.activeElement))){event.preventDefault();first.focus()}
-});
-document.getElementById("variantSwitch").addEventListener("click",event=>{
- const button=event.target.closest(".variant-btn");
- if(!button) return;
- currentVariantIndex=Number(button.dataset.variant);
- renderVariant();
- document.querySelector("#variantSwitch .variant-btn.active")?.focus();
 });
 renderGroups();
 

@@ -140,78 +140,54 @@
   </footer>
 </div>
 
-<div class="modal" id="voiceModal" role="dialog" aria-modal="true" aria-labelledby="modalName" aria-hidden="true">
-  <button class="modal-close" id="modalClose" aria-label="close">CLOSE ×</button>
-  <div class="modal-inner">
-    <div class="modal-header">
-      <div>
-        <div class="modal-index" id="modalFile"></div>
-        <h2 id="modalName"></h2>
-      </div>
-      <div class="modal-side">
-        <div class="variant-switch" id="variantSwitch"></div>
-        <div class="modal-type" id="modalType"></div>
-      </div>
-    </div>
-
-    <div class="modal-grid">
-      <div class="modal-art">
-        <div class="target-label">TARGET / <span id="modalId"></span></div>
-        <img id="modalImg" alt="">
-        <div class="art-meta">CHARACTER VISUAL / ORIGINAL COLOR</div>
-      </div>
-      <div class="modal-content" id="modalBody"></div>
-    </div>
-  </div>
-
-  <!-- Only 足立サホ uses this reference-based layout. The original view remains for all other characters. -->
-  <article class="saho-detail" id="sahoDetail" hidden>
-    <nav class="saho-detail-nav" aria-label="キャラクター詳細ナビゲーション">
-      <button type="button" id="sahoBack">← VOICEBANK INDEX</button>
-      <div class="saho-detail-nav-right">
-        <button type="button" id="sahoTerms">利用条約</button>
+<div class="modal" id="voiceModal" role="dialog" aria-modal="true" aria-labelledby="detailName" aria-hidden="true">
+  <article class="detail-page" id="detailView" hidden>
+    <nav class="detail-page-nav" aria-label="キャラクター詳細ナビゲーション">
+      <button type="button" id="detailBack">← VOICEBANK INDEX</button>
+      <div class="detail-page-nav-right">
+        <button type="button" id="detailTerms">利用規約</button>
         <a href="https://bowlroll.net/user/922902" target="_blank" rel="noopener noreferrer">UST配布 ↗</a>
       </div>
     </nav>
 
-    <!-- No invented player: this section only appears if the selected variant has a valid YouTube URL. -->
-    <section class="saho-video" id="sahoVideo" aria-label="音源配布動画" hidden>
-      <iframe id="sahoVideoFrame" title="足立サホ 音源配布動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+    <!-- YouTube embeds appear only when a valid video URL is configured. -->
+    <section class="detail-video" id="detailVideo" aria-label="音源配布動画" hidden>
+      <iframe id="detailVideoFrame" title="音源配布動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
     </section>
 
-    <div class="saho-columns">
-      <div class="saho-portrait">
-        <img id="sahoPortrait" alt="" decoding="async">
+    <div class="detail-columns">
+      <div class="detail-portrait">
+        <img id="detailPortrait" alt="" decoding="async">
       </div>
-      <div class="saho-reading">
-        <header class="saho-person">
-          <h2 id="sahoName">足立サホ</h2>
-          <p id="sahoRoman">ADACHI SAHO</p>
+      <div class="detail-reading">
+        <header class="detail-person">
+          <h2 id="detailName">足立サホ</h2>
+          <p id="detailRoman">ADACHI SAHO</p>
         </header>
-        <div class="saho-story" id="sahoStory"></div>
-        <div class="saho-variants" id="sahoVariants" role="group" aria-label="音源バージョン"></div>
-        <div class="saho-specs" aria-label="音源情報">
-          <p id="sahoFormat"></p>
-          <p id="sahoPitch"></p>
+        <div class="detail-story" id="detailStory"></div>
+        <div class="detail-variants" id="detailVariants" role="group" aria-label="音源バージョン"></div>
+        <div class="detail-specs" aria-label="音源情報">
+          <p id="detailFormat"></p>
+          <p id="detailPitch"></p>
         </div>
-        <div class="saho-audio" aria-label="試聴プレイヤー">
-          <audio id="sahoAudio" preload="metadata"></audio>
-          <button type="button" id="sahoPlay" class="saho-play" aria-label="試聴を再生" aria-pressed="false"><span aria-hidden="true">▶</span></button>
-          <input id="sahoSeek" class="saho-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="音源の再生位置">
-          <div class="saho-times" aria-live="off"><span id="sahoCurrent">0:00</span><span class="time-slash">/</span><span id="sahoDuration">--:--</span></div>
+        <div class="detail-audio" aria-label="試聴プレイヤー">
+          <audio id="detailAudio" preload="metadata"></audio>
+          <button type="button" id="detailPlay" class="detail-play" aria-label="試聴を再生" aria-pressed="false"><span aria-hidden="true">▶</span></button>
+          <input id="detailSeek" class="detail-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="音源の再生位置">
+          <div class="detail-times" aria-live="off"><span id="detailCurrent">0:00</span><span class="time-slash">/</span><span id="detailDuration">--:--</span></div>
         </div>
-        <p class="saho-player-note" id="sahoAudioStatus" role="status" aria-live="polite"></p>
-        <a id="sahoDownload" class="saho-download" href="#">DOWNLOAD ↗</a>
-        <details class="saho-additional">
+        <p class="detail-player-note" id="detailAudioStatus" role="status" aria-live="polite"></p>
+        <a id="detailDownload" class="detail-download" href="#">DOWNLOAD ↗</a>
+        <details class="detail-additional">
           <summary>PROFILE / SPECIAL PHONEMES</summary>
-          <div class="saho-additional-body">
-            <dl id="sahoFacts"></dl>
-            <div class="saho-phonemes" id="sahoSpecial"></div>
+          <div class="detail-additional-body">
+            <dl id="detailFacts"></dl>
+            <div class="detail-phonemes" id="detailSpecial"></div>
           </div>
         </details>
       </div>
     </div>
-    <footer class="saho-staff" aria-label="制作クレジット" id="sahoStaff"></footer>
+    <footer class="detail-staff" aria-label="制作クレジット" id="detailStaff"></footer>
   </article>
 </div>
 <script src="script.js"></script>
