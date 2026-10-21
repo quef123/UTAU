@@ -1,62 +1,47 @@
-HerdMentality — 全人物统一详情排版（更新）
-====================================
+HerdMentality — 键盘快捷键 + 代码清理完成版
+日期：2026-10-22
+基准：HerdMentality_Final_Staff_SpecialPhonemes_20261022.zip
 
-本版把足立サホ的参考详情页样式应用到全部五位角色，保留原有音源数据和其他页面功能。
-改动清单与测试结果请看 DETAILS_UNIFIED_CN.md。
+使用方式
+1. 解压 ZIP，打开 index.html。
+2. 利用規約在 terms.html；友情链接图像已包含在 images/links/。
+3. 原站点尚未附带正式角色立绘、WAV 试听音频及部分本地音源 ZIP，请保持以下目录结构并按原文件名补入：
+   images/角色名.png | audio/角色名.wav | download/角色名.zip
+   两条原有外部 Google Drive 下载链接保持原样。
 
-HerdMentality — 友情链接缩小 / ABOUT 移除 / 保守代码清理
-=============================================
+快捷键
+* 人物详情打开时：空格 Space 切换当前试听的播放／暂停。
+* 人物详情打开时：Esc 退出人物详情并停止试听，键盘焦点返回之前进入详情的角色。
+* 利用規約（terms.html）：Esc 返回首页的利用規約入口（index.html#terms）。
+* 聊天窗口展开且焦点在聊天记录区域时：Enter 或 Space 逐条恢复消息（原有功能）。
+* 友情链接：原有键盘 Tab / Enter / Esc 操作保持不变。
+* 按钮、链接、滑杆、输入控件自身拥有焦点时，空格不被全局试听快捷键劫持。
+* 首页普通状态不劫持空格，可像浏览器默认行为一样滚动。
+* 组合键及长按重复不触发试听快捷键。
+注意：如果焦点进入第三方 YouTube iframe，播放器的快捷键由 YouTube 自身控制。
 
-基于上一版含 GUN / MAGAZINE / LINKS 的完整网站源码。
-本次仅等比缩小友情链接、移除 ABOUT 与失效代码；原有音源资料和条款正文保持原样。
+清理内容（仅确认无用或重复的代码）
+* 删除没有被任何现有 HTML / JS 引入的 atlas.js、atlas-data.js、atlas.css。这三份为旧关系图实验代码，不在当前站点运行。
+* 删除无人使用的 CSS .variant-btn 规则；当前使用的是 .detail-variant。
+* 播放按钮与空格键复用同一 toggleDetailPlayback()，避免两套逻辑。
+* 原先六个等价的音频播放状态监听合并为同一个事件列表注册。
+* 角色详情共用的 .detail-reference 类及 aria-labelledby 移入已有 HTML，避免每次切换版本重复设置。
+* 合并首页聊天窗口重复的 DOM 存在性判断（原来的交互不变）。
+* 独立的 HerdMentality_chat_record_v2.html 作为以前完成的可独立访问的聊天页面，仍然保留；不属于确认可删的废弃代码。
 
-一、如何使用
-------------
-直接在浏览器打开 index.html 即可预览网页。
-部署时把整个压缩包内容（包括 terms.html、CSS、JS 和 images/links/）放在网站根目录，不要只上传 index.html。
-保留以下素材子文件夹（可以先为空）：
+保持不变
+* 五位角色、10 个音源版本的全部数据及路径（已与基准版逐字段比较）。
+* 小泉マキ两个版本的 [a K] 無声子音、全部イラスト：SS、无ナカノヒト批注。
+* 首页视觉布局、完整的利用規約 10 章正文和章节目录、角色详情版式。
+* 上传的手枪、弹匣、子弹原始 PNG、Galère 链接、原有单击与双击交互。
+* YouTube 视频字段及缺视频时自动隐藏的行为。
 
-  images/    人物立绘 PNG
-  audio/     试听 WAV
-  download/  音源 ZIP
-
-原 ZIP 并未包含以上三类素材，因此这里也没有伪造素材或更改文件名。
-如页面中图片留白、播放器无声音或本地 ZIP 链接找不到文件，请按下文补充素材。
-
-二、素材路径（需要区分大小写）
---------------------------
-01 足立サホ
-  無印:    images/足立サホ_無印.png       audio/足立サホ_無印.wav        download/足立サホ_無印.zip
-  Coffee:  images/足立サホ_Coffee.png   audio/足立サホ_Coffee.wav      download/足立サホ_Coffee.zip
-  Cracker: images/足立サホ_Cracker.png  audio/足立サホ_Cracker.wav     ※ Google Drive 下载
-  Caramel: images/足立サホ_Caramel.png  audio/足立サホ_Caramel.wav     download/足立サホ_Caramel.zip
-
-02 小泉マキ
-  Seasalt: images/小泉マキ_Seasalt.png  audio/小泉マキ_Seasalt.wav    ※ Google Drive 下载
-  無印:    images/小泉マキ_無印.png       audio/小泉マキ_無印.wav         download/小泉マキ_無印.zip
-
-03 常世アヤコ
-  images/常世アヤコ.png               audio/常世アヤコ.wav           download/常世アヤコ.zip
-
-04 常世チヨ
-  images/常世チヨ.png                 audio/常世チヨ.wav             download/常世チヨ.zip
-
-05 月代キリ
-  無印:    images/月代キリ_無印.png       audio/月代キリ_無印.wav         download/月代キリ_無印.zip
-  Vintage: images/月代キリ_Vintage.png  audio/月代キリ_Vintage.wav   download/月代キリ_Vintage.zip
-
-Cracker 与 Seasalt 的外部 Google Drive 地址直接保留在 script.js 的 zip 字段。
-下载地址并未在本次离线代码审查中向外部服务实测。
-
-三、源码维护
-------------
-* style.css 是主体样式；terms.css、friend-links.css 是相互独立的附加样式。
-* script.js 管理原有角色和聊天内容；friend-links-data.js / friend-links.js 管理隐藏友情链接。利用規約正文在 terms.html。
-* index.html 是主页和人物详情弹窗的容器；terms.html 是完整独立利用規約页面。
-* HerdMentality_chat_record_v2.html 是原本单独保存的聊天记录页面；
-  它不是主页的依赖，内部自带旧版样式，因此没有在本次进行设计改造。
-* 不需要安装 Node、框架、打包器或额外的字体。
-
-四、本次代码调整
-----------------
-详细问题与修改记录见 CHANGES_AND_AUDIT_CN.md。
+测试说明
+* Node.js 对使用中的 JS 代码执行了语法检查。
+* Chromium 测试：Space 播放／暂停；播放按钮/进度条不被重复触发；Esc 关闭详情且停止音频和恢复焦点。
+* 用临时内存 WAV 测试实际播放功能；临时音频没有包含在成品 ZIP 中。
+* 全五位角色共 10 版本和原始资料、文件路径核对通过。
+* 首页：320/390/768/1440px 截图与旧版逐像素一致；详情页（1440px）和利用規約页（390px）截图一致。
+* 320/390/768/1440px 检查页面及人物详情未出现横向溢出。
+* 聊天恢复、友情链接（鼠标单击/双击和键盘）、利用規約 10 章目录通过回归。
+* 本次测试环境禁止通过 localhost/file:// 访问测试站点，因此使用等价 HTML/CSS/JS 注入浏览器进行布局与交互检测；真实外部视频、正式音频及网络下载未验证。

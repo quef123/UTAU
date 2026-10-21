@@ -86,13 +86,6 @@ button,a{transition:color .18s ease,background-color .18s ease,border-color .18s
 .update-date{font:8px var(--mono);letter-spacing:.08em;color:#555}
 .update-text{font:13px/1.9 var(--serif);letter-spacing:.01em}
 
-/* Character version controls */
-.variant-btn{
-  min-width:40px;border:1px solid #dedede;background:#fff;cursor:pointer;
-  font:8px var(--mono);letter-spacing:.08em;padding:6px 10px;
-}
-.variant-btn:hover{border-color:#888}
-.variant-btn.active{background:#111;border-color:#111;color:#fff}
 footer{
   min-height:115px;display:flex;justify-content:space-between;align-items:center;
   font:8px var(--mono);letter-spacing:.12em;color:#888;

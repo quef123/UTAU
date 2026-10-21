@@ -4,18 +4,20 @@ const sahoProfile = [
 ];
 const sahoDesc = "気弱な自称陽キャ，すぐに色々と考えすぎてしまう。<br>元・ネット小説作家、現在はフリーランスの掃除屋。";
 const detailSpecial = "[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC";
-const detailStaff = "キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS<br>ナカノヒト：ヒナ";
+const natsukawaStaff = "キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS";
 
-const sahoCommon = {desc:sahoDesc,facts:sahoProfile,special:detailSpecial,staff:detailStaff};
+const sahoCommon = {desc:sahoDesc,facts:sahoProfile,special:detailSpecial,staff:natsukawaStaff};
 
 const makiDesc = "特立独行の少女。<br>軍火の密輸と売買で生計を立てるが、本人はその仕事を好いてはいないらしい。";
+const makiSpecialBase = "[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）";
+const makiSilentConsonant = "[a K]　無声子音";
 const makiFacts = [["身長","166 cm"],["年齢","19 歳"],["性別","女"],["好き","ふわふわしたもの"],["嫌い","堅苦しいもの"],["人称","わたし / あなた"]];
 
 const kiriCommon = {
   desc:"好き嫌いがはっきりしていて、明るく奔放な少女。<br>自分が信じる「正しさ」を証明するため、永遠の一部となった。",
   facts:[["身長","155 cm"],["年齢","16 歳"],["性別","女"],["好き","チョコレートクッキー"],["嫌い","弱いもの、曖昧なもの、柔らかいもの"],["人称","わたし / あなた"]],
-  special:"[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC",
-  staff:"キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS<br>ナカノヒト：ラン"
+  special:detailSpecial,
+  staff:natsukawaStaff
 };
 
 const groups = [
@@ -37,16 +39,16 @@ const groups = [
    img:"images/小泉マキ_Seasalt.png",audio:"audio/小泉マキ_Seasalt.wav",zip:"https://drive.google.com/uc?export=download&id=1yEhTPZ12mIaia8ubGJON_i6DPbpD7vng",
    desc:makiDesc,
    facts:makiFacts,
-   special:"[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）<br>[a k]　VC",
-   staff:"キャラクターデザイン：quef<br>原音設定：Natsukawa Sakuro<br>イラスト：SS<br>ナカノヒト：ヒダーナ"
+   special:`${makiSpecialBase}<br>[a k]　VC<br>${makiSilentConsonant}`,
+   staff:natsukawaStaff
   },
   {
    id:"maki-cv",label:"無印",type:"6音階単独音 / CV",pitch:"A3 / C4 / D4 / E4 / F4 / G4",
    img:"images/小泉マキ_無印.png",audio:"audio/小泉マキ_無印.wav",zip:"download/小泉マキ_無印.zip",
    desc:makiDesc,
    facts:makiFacts,
-   special:"[a R]　通常語尾<br>[a Rb]　語尾ブレス（吸気）<br>[a Rx]　語尾ブレス（呼気）<br>[br1～4]　閉口ブレス<br>[a・]　母音声門閉鎖（後）<br>[・あ]　母音声門閉鎖（前）",
-   staff:"キャラクターデザイン：quef<br>原音設定：肺叶<br>イラスト：SS<br>ナカノヒト：ヒダーナ"
+   special:`${makiSpecialBase}<br>${makiSilentConsonant}`,
+   staff:"キャラクターデザイン：quef<br>原音設定：肺叶<br>イラスト：SS"
   }
  ]
 },
@@ -58,7 +60,7 @@ const groups = [
   desc:"気位の高い少女。<br>口が悪く、他人を見下したような物言いが目立つ。<br>守るべきもののため、その責務を背負い続けている。",
   facts:[["身長","159 cm"],["年齢","14 歳"],["性別","女"],["好き","チョコレート"],["嫌い","猫"],["人称","ぼく / あんた"]],
   special:"[a R]　通常語尾<br>[a 吸R]　語尾ブレス（吸気）<br>[a 息R]　語尾ブレス（呼気）<br>[br]　閉口ブレス",
-  staff:"キャラクターデザイン：quef<br>イラスト：baita<br>サンプリング：グロック19のマガジン装填音"
+  staff:"キャラクターデザイン：quef<br>イラスト：SS<br>サンプリング：グロック19のマガジン装填音"
  }]
 },
 {
@@ -69,7 +71,7 @@ const groups = [
   desc:"無表情な少女。<br>没落した名家を再興する使命を背負い、本来の自分を押し殺して生きている。",
   facts:[["身長","164 cm"],["年齢","?? 歳"],["性別","女"],["好き","ない"],["嫌い","ない"],["人称","わたし / きみ"]],
   special:"[a R]　通常語尾<br>[a 吸R]　語尾ブレス（吸気）<br>[a 息R]　語尾ブレス（呼気）<br>[br]　閉口ブレス",
-  staff:"キャラクターデザイン：quef<br>原音設定：itsukiMNE<br>イラスト：baita<br>サンプリング：グロック19のマガジン装填音・猫が爪を研ぐ"
+  staff:"キャラクターデザイン：quef<br>原音設定：itsukiMNE<br>イラスト：SS<br>サンプリング：グロック19のマガジン装填音・猫が爪を研ぐ"
  }]
 },
 {
@@ -180,8 +182,8 @@ function renderDetailReference(g,v){
  frame.title=`${g.name} 音源配布動画`;
  videoSection.hidden=!videoId;
  if(videoId) frame.src=`https://www.youtube-nocookie.com/embed/${videoId}`;
- document.getElementById("detailPortrait").hidden=false;
  const art=document.getElementById("detailPortrait");
+ art.hidden=false;
  art.src=v.img;
  art.alt=`${g.name} ${v.label} 立ち絵`;
  const versions=document.getElementById("detailVariants");
@@ -213,19 +215,18 @@ function showDetailAudioError(){
  if(detailPlaybackAttempted) detailAudioStatus.textContent="試聴ファイルを読み込めませんでした。";
  updateDetailAudioUI();
 }
-detailAudio.addEventListener("timeupdate",updateDetailAudioUI);
-detailAudio.addEventListener("durationchange",updateDetailAudioUI);
-detailAudio.addEventListener("loadedmetadata",updateDetailAudioUI);
-detailAudio.addEventListener("pause",updateDetailAudioUI);
-detailAudio.addEventListener("play",updateDetailAudioUI);
-detailAudio.addEventListener("ended",updateDetailAudioUI);
-detailAudio.addEventListener("error",showDetailAudioError);
-detailPlay.addEventListener("click",async()=>{
+// The play button and keyboard shortcut share this single playback path.
+async function toggleDetailPlayback(){
  if(!detailAudio.paused){detailAudio.pause();return;}
  detailPlaybackAttempted=true;
  detailAudioStatus.textContent="";
  try{await detailAudio.play()}catch{showDetailAudioError()}
+}
+["timeupdate","durationchange","loadedmetadata","pause","play","ended"].forEach(name=>{
+ detailAudio.addEventListener(name,updateDetailAudioUI);
 });
+detailAudio.addEventListener("error",showDetailAudioError);
+detailPlay.addEventListener("click",toggleDetailPlayback);
 detailSeek.addEventListener("input",()=>{
  if(Number.isFinite(detailAudio.duration) && detailAudio.duration>0){
    detailAudio.currentTime=Number(detailSeek.value)/1000*detailAudio.duration;
@@ -249,8 +250,6 @@ document.getElementById("detailTerms").addEventListener("click",()=>{
 
 function renderVariant(){
  const g=currentGroup, v=g.variants[currentVariantIndex];
- modal.classList.add("detail-reference");
- modal.setAttribute("aria-labelledby","detailName");
  document.getElementById("detailView").hidden=false;
  renderDetailReference(g,v);
 }
@@ -266,8 +265,28 @@ function closeModal(){
 document.querySelectorAll("[data-open]").forEach(button=>button.addEventListener("click",()=>document.getElementById(button.dataset.open).scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})));
 modal.addEventListener("click",event=>{if(event.target===modal)closeModal()});
 document.addEventListener("keydown",event=>{
- if(!modal.classList.contains("open")) return;
- if(event.key==="Escape"){event.preventDefault();closeModal();return}
+ if(!modal.classList.contains("open") || event.defaultPrevented) return;
+ if(event.key==="Escape"){
+   if(!event.altKey && !event.ctrlKey && !event.metaKey){
+     event.preventDefault();
+     closeModal();
+   }
+   return;
+ }
+ // Space toggles the visible detail's WAV, but native controls keep their keys:
+ // Space on a button clicks it; Space on a range/input must not pause the song.
+ if((event.code==="Space" || event.key===" ") && !event.repeat &&
+    !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey){
+   const target=event.target;
+   const isControl=target instanceof Element && Boolean(target.closest(
+     'button, a, input, textarea, select, summary, [contenteditable]:not([contenteditable="false"]), [role="button"], [role="slider"]'
+   ));
+   if(!isControl){
+     event.preventDefault();
+     void toggleDetailPlayback();
+   }
+   return;
+ }
  if(event.key!=="Tab") return;
  const focusable=Array.from(modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), audio[controls], summary, [tabindex]:not([tabindex="-1"])')).filter(el=>el.getClientRects().length && !el.closest('[hidden]'));
  if(!focusable.length) return;
@@ -416,9 +435,6 @@ if(recoveredChatToggle){
 }
 if(recoveredChatPanel){
   recoveredChatPanel.addEventListener("click",revealNextRecoveredMessage);
-}
-
-if(recoveredChatPanel){
   recoveredChatPanel.querySelector(".chat-window").addEventListener("keydown",event=>{
     if(event.key==="Enter" || event.key===" "){
       event.preventDefault();

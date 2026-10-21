@@ -140,7 +140,7 @@
   </footer>
 </div>
 
-<div class="modal" id="voiceModal" role="dialog" aria-modal="true" aria-labelledby="detailName" aria-hidden="true">
+<div class="modal detail-reference" id="voiceModal" role="dialog" aria-modal="true" aria-labelledby="detailName" aria-hidden="true">
   <article class="detail-page" id="detailView" hidden>
     <nav class="detail-page-nav" aria-label="キャラクター詳細ナビゲーション">
       <button type="button" id="detailBack">← VOICEBANK INDEX</button>
@@ -172,7 +172,7 @@
         </div>
         <div class="detail-audio" aria-label="試聴プレイヤー">
           <audio id="detailAudio" preload="metadata"></audio>
-          <button type="button" id="detailPlay" class="detail-play" aria-label="試聴を再生" aria-pressed="false"><span aria-hidden="true">▶</span></button>
+          <button type="button" id="detailPlay" class="detail-play" aria-label="試聴を再生" aria-pressed="false" aria-keyshortcuts="Space" title="Space：再生 / 一時停止"><span aria-hidden="true">▶</span></button>
           <input id="detailSeek" class="detail-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="音源の再生位置">
           <div class="detail-times" aria-live="off"><span id="detailCurrent">0:00</span><span class="time-slash">/</span><span id="detailDuration">--:--</span></div>
         </div>

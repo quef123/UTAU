@@ -62,5 +62,17 @@
   </main>
   <footer class="site-footer"><span>HERDMENTALITY</span><span>UTAU VOICEBANK ARCHIVE</span><span>QUEF / 2026</span></footer>
 </div>
+<script>
+// Escape closes the terms view by returning to the site index.
+document.addEventListener("keydown", event => {
+  if(event.key !== "Escape" || event.defaultPrevented ||
+     event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  if(event.target instanceof Element && event.target.closest(
+    "input, textarea, select, [contenteditable]:not([contenteditable='false'])"
+  )) return;
+  event.preventDefault();
+  window.location.href = "index.html#terms";
+});
+</script>
 </body>
 </html>
