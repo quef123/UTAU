@@ -9,20 +9,20 @@
 const characterComments = [
   {
     targetId: 'saho', speakerId: 'maki', recordType: 'ordinary',
-    quote: 'サホがいないと、困ることが多いから。……でも、サホもわたしがいないと困ると思う。'
+    quote: 'サホがいないと、困ることが多いから…でも、サホもわたしがいないと困ると思う。'
   },
   {
     targetId: 'saho', speakerId: 'kiri', recordType: 'past',
-    quote: 'サホって、優しいよね。でも、たまに自分のことをすごく嫌いそうな顔をするんだ。'
+    quote: 'サホって、優しいよね。'
   },
   {
     targetId: 'saho', speakerId: 'chiyo', recordType: 'memoryCrossfade',
     presentQuote: 'やさしい人…たぶん。',
-    pastQuote: 'サホは、いつも誰かのことを気にかけてるよね。自分のことも、もう少し大事にしてほしいな。'
+    pastQuote: 'いつも誰かのことを気にかけてるよね。自分のことも、もう少し大事にしてほしいな。'
   },
   {
     targetId: 'saho', speakerId: 'ayako', recordType: 'ordinary',
-    quote: '優しい人なんだろうけど、なんか放っておけない感じ。……あたしが言うのも変だけどさ。'
+    quote: '悪い人じゃないのはわかってる。でも、姉さんにはあんまり近づいてほしくないんだよね。'
   },
   {
     targetId: 'maki', speakerId: 'saho', recordType: 'ordinary',
@@ -39,11 +39,11 @@ const characterComments = [
   {
     targetId: 'kiri', speakerId: 'chiyo', recordType: 'memoryCrossfade',
     presentQuote: 'だれですか…？',
-    pastQuote: 'キリは、ちょっと変わってるけど、一緒にいると楽しいよ。……何を考えてるのか、わからないときもあるけどね。'
+    pastQuote: 'キリは、ちょっと変わってるけど、一緒にいると楽しい。'
   },
   {
     targetId: 'chiyo', speakerId: 'saho', recordType: 'ordinary',
-    quote: 'チヨちゃんは、昔のことを何も覚えてないんだって。……ううん、責めてるわけじゃないよ。覚えてなくても、仕方ないものね。'
+    quote: 'チヨちゃんは、昔のことを何も覚えてないんだって…ううん、責めてるわけじゃないよ。覚えてなくても、仕方ないものね。'
   },
   {
     targetId: 'chiyo', speakerId: 'kiri', recordType: 'past',
@@ -51,11 +51,11 @@ const characterComments = [
   },
   {
     targetId: 'chiyo', speakerId: 'ayako', recordType: 'ordinary',
-    quote: '姉さんは、昔のことなんて覚えてなくていい。……あたしが覚えてるから。'
+    quote: 'あたしが覚えてるから。'
   },
   {
     targetId: 'chiyo', speakerId: 'maki', recordType: 'ordinary',
-    quote: '……あまり話したことはないけど。サホが、時々あの人の話をする。'
+    quote: 'あまり話したことはないけど。サホが、時々あの人の話をする。'
   },
   {
     targetId: 'ayako', speakerId: 'saho', recordType: 'ordinary',
