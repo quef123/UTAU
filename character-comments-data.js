@@ -1,8 +1,9 @@
-/* HerdMentality / 雑談
+/* HerdMentality / 彼女について
  * targetId = the character whose DETAIL page is open.
  * speakerId = the character speaking about that target.
  * past: remarks made during the speaker's lifetime.
- * lostMemory: a pre-amnesia record by 常世チヨ; it uses the quiet reveal interaction.
+ * memoryCrossfade: 常世チヨ's post-amnesia presentQuote is shown first;
+ * hovering or toggling the quote reveals her pre-amnesia pastQuote.
  * Do not infer reciprocal remarks or add unconfirmed relationships.
  */
 const characterComments = [
@@ -15,8 +16,9 @@ const characterComments = [
     quote: 'サホって、優しいよね。でも、たまに自分のことをすごく嫌いそうな顔をするんだ。'
   },
   {
-    targetId: 'saho', speakerId: 'chiyo', recordType: 'lostMemory',
-    quote: 'サホちゃんは、いつも誰かのことを気にかけてるよね。自分のことも、もう少し大事にしてほしいな。'
+    targetId: 'saho', speakerId: 'chiyo', recordType: 'memoryCrossfade',
+    presentQuote: 'やさしい人…たぶん。',
+    pastQuote: 'サホは、いつも誰かのことを気にかけてるよね。自分のことも、もう少し大事にしてほしいな。'
   },
   {
     targetId: 'saho', speakerId: 'ayako', recordType: 'ordinary',
@@ -35,8 +37,9 @@ const characterComments = [
     quote: 'キリちゃんのこと？……うん、覚えてるよ。忘れるわけないでしょう。'
   },
   {
-    targetId: 'kiri', speakerId: 'chiyo', recordType: 'lostMemory',
-    quote: 'キリちゃんは、ちょっと変わってるけど、一緒にいると楽しいよ。……何を考えてるのか、わからないときもあるけどね。'
+    targetId: 'kiri', speakerId: 'chiyo', recordType: 'memoryCrossfade',
+    presentQuote: 'だれですか…？',
+    pastQuote: 'キリは、ちょっと変わってるけど、一緒にいると楽しいよ。……何を考えてるのか、わからないときもあるけどね。'
   },
   {
     targetId: 'chiyo', speakerId: 'saho', recordType: 'ordinary',
@@ -59,8 +62,9 @@ const characterComments = [
     quote: 'アヤコちゃんは、あんまり人に頼らない子だね。困ったことがあったら、遠慮しないで言ってくれたらいいのに。'
   },
   {
-    targetId: 'ayako', speakerId: 'chiyo', recordType: 'lostMemory',
-    quote: 'アヤコはね、ちょっと不器用だけど、本当は優しい子なんだよ。わたしの大事な妹なの。'
+    targetId: 'ayako', speakerId: 'chiyo', recordType: 'memoryCrossfade',
+    presentQuote: 'アヤコ、だいじ。',
+    pastQuote: 'アヤコはね、ちょっと不器用だけど、本当は優しい子なんだよ。わたしの大事な妹なの。'
   },
   {
     targetId: 'ayako', speakerId: 'maki', recordType: 'ordinary',

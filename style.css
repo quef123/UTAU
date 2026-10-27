@@ -433,7 +433,7 @@ footer{
 .detail-comment-speaker[aria-pressed="true"]{color:#111;font-weight:500}
 .detail-comment-speaker:hover{color:#555}
 .detail-comment-speaker:focus-visible,
-.detail-memory:focus-visible{outline:1px solid #777;outline-offset:5px}
+.detail-memory-switch:focus-visible{outline:1px solid #777;outline-offset:5px}
 .detail-comment-body{
   margin-top:26px;
   min-height:148px;
@@ -449,18 +449,20 @@ footer{
 }
 .detail-comment-ordinary{animation:commentAppear .22s ease-out both}
 @keyframes commentAppear{from{opacity:0}to{opacity:1}}
-.detail-memory{
-  appearance:none;display:block;width:100%;min-height:148px;
-  background:transparent;border:0;border-radius:0;
-  padding:0;margin:0;text-align:left;color:inherit;
-  cursor:pointer;
+.detail-memory-switch{
+  appearance:none;display:block;width:100%;
+  margin:0;padding:0;border:0;border-radius:0;background:transparent;
+  color:inherit;text-align:left;cursor:pointer;
 }
-.detail-memory-ink{
-  display:block;
+.detail-memory-stack{display:grid;width:100%}
+.detail-memory-quote{
+  grid-area:1/1;
   opacity:0;
   transition:opacity 1s ease-in-out;
 }
-.detail-memory[data-visible="true"] .detail-memory-ink{opacity:1}
+.detail-memory-quote-present{opacity:1}
+.detail-memory-switch[data-memory-state="past"] .detail-memory-quote-present{opacity:0}
+.detail-memory-switch[data-memory-state="past"] .detail-memory-quote-past{opacity:1}
 @media(max-width:980px){
  .detail-comments{gap:32px;margin-top:75px}
 }
@@ -470,10 +472,9 @@ footer{
  .detail-comment-speakers{gap:2px 20px}
  .detail-comment-speaker{font-size:13px;min-height:41px;padding:9px 0}
  .detail-comment-body{min-height:180px;margin-top:22px}
- .detail-memory{min-height:180px}
  .detail-comment-quote{font-size:14px;line-height:1.95}
 }
 @media(prefers-reduced-motion:reduce){
  .detail-comment-ordinary{animation:none}
- .detail-memory-ink{transition:none}
+ .detail-memory-quote{transition:none}
 }
