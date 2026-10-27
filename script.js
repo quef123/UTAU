@@ -113,6 +113,7 @@ function openGroup(index){
  previousBodyOverflow=document.body.style.overflow;
  currentGroup=groups[index];currentVariantIndex=0;
  renderVariant();
+ renderCharacterComments(currentGroup.groupId);
  modal.scrollTop=0;
  modal.classList.add("open");
  modal.setAttribute("aria-hidden","false");
@@ -253,6 +254,109 @@ function renderVariant(){
  document.getElementById("detailView").hidden=false;
  renderDetailReference(g,v);
 }
+/* 雑談 / one component and one source of data for every character.
+ * The speaker expresses a view of the current DETAIL character (target).
+ * The quiet memory effect is reserved exclusively for チヨ's pre-amnesia remarks.
+ */
+const commentsSection = document.getElementById("detailComments");
+const commentsSpeakers = document.getElementById("detailCommentSpeakers");
+const commentsBody = document.getElementById("detailCommentBody");
+let commentsForTarget = [];
+let selectedCommentIndex = -1;
+
+function renderCharacterComments(targetId){
+  commentsForTarget = characterComments.filter(item => item.targetId === targetId);
+  commentsSection.hidden = commentsForTarget.length === 0;
+  commentsSpeakers.replaceChildren();
+  commentsBody.replaceChildren();
+  selectedCommentIndex = -1;
+  if(!commentsForTarget.length) return;
+
+  // Reuse the already configured character names rather than duplicating them.
+  const fragment = document.createDocumentFragment();
+  commentsForTarget.forEach((item,index) => {
+    const speaker = groups.find(group => group.groupId === item.speakerId);
+    if(!speaker) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "detail-comment-speaker";
+    button.textContent = speaker.name;
+    button.dataset.commentIndex = String(index);
+    button.setAttribute("aria-pressed","false");
+    fragment.appendChild(button);
+  });
+  commentsSpeakers.appendChild(fragment);
+  selectCharacterComment(0);
+}
+
+function selectCharacterComment(index){
+  if(index === selectedCommentIndex || !commentsForTarget[index]) return;
+  selectedCommentIndex = index;
+  const entry = commentsForTarget[index];
+  commentsSpeakers.querySelectorAll("[data-comment-index]").forEach(button => {
+    button.setAttribute("aria-pressed", String(Number(button.dataset.commentIndex) === index));
+  });
+  // Rebuilding just the text surface discards the previous memory reveal state.
+  commentsBody.replaceChildren();
+
+  if(entry.recordType !== "lostMemory"){
+    const quote = document.createElement("p");
+    quote.className = "detail-comment-quote detail-comment-ordinary";
+    quote.textContent = `「${entry.quote}」`;
+    commentsBody.appendChild(quote);
+    return;
+  }
+  const speaker = groups.find(group => group.groupId === entry.speakerId);
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "detail-memory";
+  button.dataset.visible = "false";
+  button.setAttribute("aria-expanded", "false");
+  button.setAttribute("aria-label", `${speaker.name}の発言を表示`);
+
+  const ink = document.createElement("span");
+  ink.id = "detailMemoryRecord";
+  button.setAttribute("aria-controls", ink.id);
+  ink.className = "detail-memory-ink";
+  ink.setAttribute("aria-hidden", "true");
+  const quote = document.createElement("span");
+  quote.className = "detail-comment-quote";
+  quote.textContent = `「${entry.quote}」`;
+  ink.appendChild(quote);
+  button.appendChild(ink);
+  commentsBody.appendChild(button);
+
+  let lastPointerType = "";
+  let visible = false;
+  function setVisible(next){
+    if(visible === next) return;
+    visible = next;
+    button.dataset.visible = String(visible);
+    button.setAttribute("aria-expanded", String(visible));
+    ink.setAttribute("aria-hidden", String(!visible));
+    button.setAttribute("aria-label", visible
+      ? `${speaker.name}の発言。「${entry.quote}」。押すと非表示にします`
+      : `${speaker.name}の発言を表示`);
+  }
+  // A hover is only a hover for a real mouse/trackpad; touch & pen are toggles.
+  button.addEventListener("pointerenter",event => {
+    if(event.pointerType === "mouse") setVisible(true);
+  });
+  button.addEventListener("pointerleave",event => {
+    if(event.pointerType === "mouse") setVisible(false);
+  });
+  button.addEventListener("pointerdown",event => {lastPointerType = event.pointerType});
+  button.addEventListener("click",event => {
+    if(event.detail === 0 || lastPointerType !== "mouse") setVisible(!visible);
+    lastPointerType = "";
+  });
+}
+commentsSpeakers.addEventListener("click",event => {
+  const button = event.target.closest("[data-comment-index]");
+  if(!button) return;
+  selectCharacterComment(Number(button.dataset.commentIndex));
+});
+
 function closeModal(){
  if(!modal.classList.contains("open")) return;
  stopDetailMedia();
@@ -298,56 +402,49 @@ renderGroups();
 
 /* v17 / recovered homepage chat */
 const recoveredChatMessages = [
-  {type:"msg", who:"足立サホ", time:"23:41", side:"", text:"……誰か、まだ起きてます？"},
-  {type:"msg", who:"小泉マキ", time:"23:41", side:"", text:"起きてる。用件は。"},
-  {type:"msg", who:"足立サホ", time:"23:42", side:"", text:"いや、用件ってほどじゃないんだけど。なんとなく、静かすぎるなって。"},
-  {type:"msg", who:"常世アヤコ", time:"23:42", side:"", text:"それで人を呼びつけるの？　暇なら寝れば。"},
-  {type:"msg", who:"月代キリ", time:"23:42", side:"outgoing", text:"寝られないなら話せばいいじゃん。わたしは別に付き合うけど。"},
-  {type:"msg", who:"常世チヨ", time:"23:43", side:"", text:"……きみたちは、夜になると急に饒舌になるね。"},
+  {type:"msg", who:"足立サホ", time:"23:41", side:"", text:"……二人とも、まだ起きてる？"},
+  {type:"msg", who:"常世チヨ", time:"23:41", side:"", text:"起きてるよ。どうしたの、サホちゃん。"},
+  {type:"msg", who:"月代キリ", time:"23:42", side:"outgoing", text:"わたしもいるよ。なに？"},
+  {type:"msg", who:"足立サホ", time:"23:42", side:"", text:"明日のプリント、どこにしまったか忘れちゃって。今日、机の上に置いてたかな。"},
+  {type:"msg", who:"月代キリ", time:"23:42", side:"outgoing", text:"置いてた。帰るとき、ノートにはさんでなかった？"},
+  {type:"msg", who:"足立サホ", time:"23:43", side:"", text:"あっ、そうかも。ちょっと探してくるね。"},
+  {type:"msg", who:"常世チヨ", time:"23:43", side:"", text:"慌てなくていいよ。"},
+  {type:"msg", who:"足立サホ", time:"23:44", side:"", text:"……あった。ごめんね、こんな時間に。"},
+  {type:"msg", who:"月代キリ", time:"23:44", side:"outgoing", text:"だから、そんなに謝らなくていいって。"},
+  {type:"msg", who:"足立サホ", time:"23:44", side:"", text:"ふふ。キリちゃん、いつもそう言うよね。"},
+  {type:"msg", who:"月代キリ", time:"23:45", side:"outgoing", text:"サホがいつも謝るからでしょ。"},
+  {type:"msg", who:"常世チヨ", time:"23:45", side:"", text:"まあまあ。見つかってよかったね。"},
+  {type:"msg", who:"足立サホ", time:"23:46", side:"", text:"うん。チヨちゃんもありがとう。"},
   {type:"system", text:"一部のメッセージを復元しました"},
-  {type:"msg", who:"足立サホ", time:"23:44", side:"", text:"饒舌っていうか……昼間に言うほどでもないことが、夜だとちょっと言えるだけ。"},
-  {type:"msg", who:"小泉マキ", time:"23:44", side:"", text:"それ、昼でも言える。さほが勝手に難しくしてるだけ。"},
-  {type:"msg", who:"足立サホ", time:"23:45", side:"", text:"そういう言い方するから難しくなるんだって。"},
-  {type:"msg", who:"常世アヤコ", time:"23:45", side:"", text:"似た者同士。どっちも面倒。"},
-  {type:"msg", who:"月代キリ", time:"23:45", side:"outgoing", text:"アヤコ、それ言うなら自分も大概じゃない？"},
-  {type:"msg", who:"常世アヤコ", time:"23:46", side:"", text:"ぼくは少なくとも、自分が正しいと思ったことを曖昧にはしない。"},
-  {type:"msg", who:"月代キリ", time:"23:46", side:"outgoing", text:"へえ。そこだけは気が合うかも。"},
-  {type:"msg", who:"常世チヨ", time:"23:47", side:"", text:"気が合う、というより、同じ場所でぶつかりそうだけど。"},
-  {type:"msg", who:"小泉マキ", time:"23:47", side:"", text:"放っておけばいい。壊れたらその時考える。"},
-  {type:"msg", who:"足立サホ", time:"23:48", side:"", text:"マキって、そういうところだけ異様に雑だよね……。"},
-  {type:"msg", who:"小泉マキ", time:"23:48", side:"", text:"そう？　必要なことはちゃんと考えてる。"},
-  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"じゃあ今、必要なことって何。"},
-  {type:"msg", who:"小泉マキ", time:"23:49", side:"", text:"さほが寝ること。"},
-  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"……はいはい。"},
-  {type:"msg", who:"月代キリ", time:"23:49", side:"outgoing", text:"マキ、そういうとこ面白い。自分のことは全然説明しないくせに、他人には答えを出すの早いよね。"},
-  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"説明しても意味ないことはある。"},
-  {type:"msg", who:"月代キリ", time:"23:50", side:"outgoing", text:"意味あるかどうか、決めるの早すぎない？"},
-  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"遅く決めても同じなら、早い方がいい。"},
-  {type:"msg", who:"常世チヨ", time:"23:50", side:"", text:"効率の話をしているようで、たぶん違うね。"},
-  {type:"msg", who:"足立サホ", time:"23:50", side:"", text:"うん。マキはたぶん、考えてないんじゃなくて、考えた後を見せないだけ。"},
-  {type:"msg", who:"小泉マキ", time:"23:50", side:"", text:"……さほ。"},
-  {type:"msg", who:"足立サホ", time:"23:51", side:"", text:"なに。"},
-  {type:"msg", who:"小泉マキ", time:"23:51", side:"", text:"余計なこと言わなくていい。"},
-  {type:"msg", who:"月代キリ", time:"23:51", side:"outgoing", text:"図星なんだ。"},
-  {type:"msg", who:"常世アヤコ", time:"23:51", side:"", text:"キリ、いちいち突くな。面倒になる。"},
-  {type:"msg", who:"月代キリ", time:"23:51", side:"outgoing", text:"だって曖昧なままにする方が気持ち悪い。言いたいことあるなら言えばいいじゃん。"},
-  {type:"msg", who:"常世アヤコ", time:"23:52", side:"", text:"言えば全部ましになると思ってるなら、おめでたいね。"},
-  {type:"msg", who:"月代キリ", time:"23:52", side:"outgoing", text:"少なくとも黙って腐らせるよりはまし。"},
-  {type:"msg", who:"常世チヨ", time:"23:52", side:"", text:"正しさは、言葉にした瞬間から誰かを傷つけることもあるよ。"},
-  {type:"msg", who:"月代キリ", time:"23:52", side:"outgoing", text:"それでも、何も言わないよりいい。わたしはそう思う。"},
-  {type:"msg", who:"足立サホ", time:"23:52", side:"", text:"……キリは、迷わないね。"},
-  {type:"msg", who:"月代キリ", time:"23:53", side:"outgoing", text:"迷うよ。でも、迷ったまま立ち止まるのが嫌いなだけ。"},
-  {type:"msg", who:"小泉マキ", time:"23:53", side:"", text:"それは少し分かる。"},
-  {type:"msg", who:"月代キリ", time:"23:53", side:"outgoing", text:"でしょ。じゃあやっぱり気が合うじゃん。"},
-  {type:"msg", who:"小泉マキ", time:"23:53", side:"", text:"そこまでは言ってない。"},
-  {type:"msg", who:"足立サホ", time:"23:53", side:"", text:"ふふ。マキ、ちょっと困ってる。"},
-  {type:"msg", who:"小泉マキ", time:"23:54", side:"", text:"困ってない。"},
+  {type:"msg", who:"常世チヨ", time:"23:46", side:"", text:"そういえば、明日は一緒に帰れる？"},
+  {type:"msg", who:"足立サホ", time:"23:47", side:"", text:"わたし、掃除当番があるから少し遅くなるかも。"},
+  {type:"msg", who:"月代キリ", time:"23:47", side:"outgoing", text:"じゃあ終わるまで待ってる。"},
+  {type:"msg", who:"足立サホ", time:"23:47", side:"", text:"え、いいの？　先に帰ってても大丈夫だよ。"},
+  {type:"msg", who:"月代キリ", time:"23:48", side:"outgoing", text:"わたしが待ちたいんだから、別にいいじゃん。"},
+  {type:"msg", who:"常世チヨ", time:"23:48", side:"", text:"じゃあ、わたしも待つね。"},
+  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"二人とも、無理しなくていいのに。"},
+  {type:"msg", who:"月代キリ", time:"23:49", side:"outgoing", text:"それ、今日何回目？"},
+  {type:"msg", who:"足立サホ", time:"23:49", side:"", text:"……何が？"},
+  {type:"msg", who:"月代キリ", time:"23:50", side:"outgoing", text:"「いいのに」ってやつ。サホ、嫌なことがあってもそう言いそう。"},
+  {type:"msg", who:"足立サホ", time:"23:50", side:"", text:"そんなことないと思うけど……。"},
+  {type:"msg", who:"月代キリ", time:"23:50", side:"outgoing", text:"ほら、また曖昧。嫌なら嫌って言えばいいのに。"},
+  {type:"msg", who:"常世チヨ", time:"23:51", side:"", text:"キリちゃん、もうそのへんにしよう？"},
+  {type:"msg", who:"月代キリ", time:"23:51", side:"outgoing", text:"……うん。言いすぎた。ごめん。"},
+  {type:"msg", who:"足立サホ", time:"23:51", side:"", text:"大丈夫だよ。気にしてないから。"},
+  {type:"msg", who:"月代キリ", time:"23:52", side:"outgoing", text:"そういうとこも、サホらしいけどね。"},
+  {type:"msg", who:"常世チヨ", time:"23:52", side:"", text:"二人とも、明日眠くなっちゃうよ。そろそろ寝ない？"},
+  {type:"msg", who:"月代キリ", time:"23:52", side:"outgoing", text:"チヨまで先生みたいなこと言う。"},
+  {type:"msg", who:"足立サホ", time:"23:53", side:"", text:"じゃあ、明日起きられなかったらキリちゃんのせいにしようかな。"},
+  {type:"msg", who:"月代キリ", time:"23:53", side:"outgoing", text:"えっ、なんでわたし！？"},
+  {type:"msg", who:"常世チヨ", time:"23:53", side:"", text:"ふふ。おやすみの前に仲直りできてよかったね。"},
+  {type:"msg", who:"月代キリ", time:"23:54", side:"outgoing", text:"別にけんかしてないってば。"},
   {type:"system", text:"23:54　通信が一時的に切断されました"},
-  {type:"msg", who:"月代キリ", time:"23:55", side:"outgoing", text:"……戻った？"},
-  {type:"msg", who:"常世チヨ", time:"23:55", side:"", text:"戻っているよ。たぶん。"},
-  {type:"msg", who:"小泉マキ", time:"23:55", side:"", text:"いる。"},
-  {type:"msg", who:"足立サホ", time:"23:55", side:"", text:"いるよ。"},
-  {type:"msg", who:"月代キリ", time:"23:55", side:"outgoing", text:"ならいい。続きしよ。"}
+  {type:"msg", who:"足立サホ", time:"23:55", side:"", text:"……戻った？"},
+  {type:"msg", who:"常世チヨ", time:"23:55", side:"", text:"うん、戻ったみたい。"},
+  {type:"msg", who:"月代キリ", time:"23:55", side:"outgoing", text:"なんだ、切れたのか。"},
+  {type:"msg", who:"足立サホ", time:"23:55", side:"", text:"じゃあ、今度こそおやすみ。"},
+  {type:"msg", who:"常世チヨ", time:"23:55", side:"", text:"おやすみなさい。"},
+  {type:"msg", who:"月代キリ", time:"23:55", side:"outgoing", text:"おやすみ。また明日ね。"}
 ];
 
 let recoveredChatStarted = false;

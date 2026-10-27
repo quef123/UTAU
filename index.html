@@ -187,9 +187,18 @@
         </details>
       </div>
     </div>
+    <!-- Other characters' remarks about the current character. One reusable section for all DETAIL pages. -->
+    <section class="detail-comments" id="detailComments" aria-labelledby="detailCommentsHeading" hidden>
+      <div class="detail-comments-reading">
+        <h3 id="detailCommentsHeading">雑談</h3>
+        <div class="detail-comment-speakers" id="detailCommentSpeakers" role="group" aria-label="評価者を選択"></div>
+        <div class="detail-comment-body" id="detailCommentBody" aria-live="polite" aria-atomic="true"></div>
+      </div>
+    </section>
     <footer class="detail-staff" aria-label="制作クレジット" id="detailStaff"></footer>
   </article>
 </div>
+<script src="character-comments-data.js"></script>
 <script src="script.js"></script>
 <script src="friend-links-data.js"></script>
 <script src="friend-links.js"></script>
