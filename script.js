@@ -113,7 +113,6 @@ function openGroup(index){
  previousBodyOverflow=document.body.style.overflow;
  currentGroup=groups[index];currentVariantIndex=0;
  renderVariant();
- renderCharacterComments(currentGroup.groupId);
  modal.scrollTop=0;
  modal.classList.add("open");
  modal.setAttribute("aria-hidden","false");
@@ -254,128 +253,6 @@ function renderVariant(){
  document.getElementById("detailView").hidden=false;
  renderDetailReference(g,v);
 }
-/* 雑談 / one component and one source of data for every character.
- * The speaker expresses a view of the current DETAIL character (target).
- * Only チヨ's remarks crossfade between her post- and pre-amnesia wording.
- */
-const commentsSection = document.getElementById("detailComments");
-const commentsSpeakers = document.getElementById("detailCommentSpeakers");
-const commentsBody = document.getElementById("detailCommentBody");
-let commentsForTarget = [];
-let selectedCommentIndex = -1;
-
-function renderCharacterComments(targetId){
-  commentsForTarget = characterComments.filter(item => item.targetId === targetId);
-  commentsSection.hidden = commentsForTarget.length === 0;
-  commentsSpeakers.replaceChildren();
-  commentsBody.replaceChildren();
-  selectedCommentIndex = -1;
-  if(!commentsForTarget.length) return;
-
-  // Reuse the already configured character names rather than duplicating them.
-  const fragment = document.createDocumentFragment();
-  commentsForTarget.forEach((item,index) => {
-    const speaker = groups.find(group => group.groupId === item.speakerId);
-    if(!speaker) return;
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "detail-comment-speaker";
-    button.textContent = speaker.name;
-    button.dataset.commentIndex = String(index);
-    button.setAttribute("aria-pressed","false");
-    fragment.appendChild(button);
-  });
-  commentsSpeakers.appendChild(fragment);
-  selectCharacterComment(0);
-}
-
-function selectCharacterComment(index){
-  if(index === selectedCommentIndex || !commentsForTarget[index]) return;
-  selectedCommentIndex = index;
-  const entry = commentsForTarget[index];
-  commentsSpeakers.querySelectorAll("[data-comment-index]").forEach(button => {
-    button.setAttribute("aria-pressed", String(Number(button.dataset.commentIndex) === index));
-  });
-  // Rebuilding the text surface also resets チヨ to her post-amnesia wording.
-  commentsBody.replaceChildren();
-  commentsBody.setAttribute("aria-live", "polite");
-
-  if(entry.recordType === "memoryCrossfade" &&
-     entry.speakerId === "chiyo" &&
-     typeof entry.presentQuote === "string" &&
-     typeof entry.pastQuote === "string"){
-    renderChiyoMemoryQuote(entry);
-    return;
-  }
-
-  const quote = document.createElement("p");
-  quote.className = "detail-comment-quote detail-comment-ordinary";
-  quote.textContent = `「${entry.quote}」`;
-  commentsBody.appendChild(quote);
-}
-
-function renderChiyoMemoryQuote(entry){
-  // The focused toggle exposes only its current quote; disabling the parent live
-  // region prevents the same change from being announced a second time.
-  commentsBody.setAttribute("aria-live", "off");
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "detail-memory-switch";
-  button.dataset.memoryState = "present";
-  button.setAttribute("aria-pressed", "false");
-
-  const stack = document.createElement("span");
-  stack.className = "detail-memory-stack";
-
-  const presentQuote = document.createElement("span");
-  presentQuote.className = "detail-comment-quote detail-memory-quote detail-memory-quote-present";
-  presentQuote.textContent = `「${entry.presentQuote}」`;
-  presentQuote.setAttribute("aria-hidden", "false");
-
-  const pastQuote = document.createElement("span");
-  pastQuote.className = "detail-comment-quote detail-memory-quote detail-memory-quote-past";
-  pastQuote.textContent = `「${entry.pastQuote}」`;
-  pastQuote.setAttribute("aria-hidden", "true");
-
-  stack.append(presentQuote,pastQuote);
-  button.appendChild(stack);
-  commentsBody.appendChild(button);
-
-  function setMemoryState(nextState){
-    const isPast = nextState === "past";
-    button.dataset.memoryState = isPast ? "past" : "present";
-    button.setAttribute("aria-pressed", String(isPast));
-    presentQuote.setAttribute("aria-hidden", String(isPast));
-    pastQuote.setAttribute("aria-hidden", String(!isPast));
-  }
-
-  function toggleMemoryState(){
-    setMemoryState(button.dataset.memoryState === "past" ? "present" : "past");
-  }
-
-  let lastPointerType = "";
-  button.addEventListener("pointerenter",event => {
-    if(event.pointerType === "mouse") setMemoryState("past");
-  });
-  button.addEventListener("pointerleave",event => {
-    if(event.pointerType === "mouse") setMemoryState("present");
-  });
-  button.addEventListener("pointerdown",event => {
-    lastPointerType = event.pointerType;
-  });
-  button.addEventListener("click",event => {
-    // Native buttons dispatch detail === 0 for Enter, Space and assistive tech.
-    // Touch and pen use the same toggle; a mouse is governed only by hover.
-    if(event.detail === 0 || lastPointerType !== "mouse") toggleMemoryState();
-    lastPointerType = "";
-  });
-}
-commentsSpeakers.addEventListener("click",event => {
-  const button = event.target.closest("[data-comment-index]");
-  if(!button) return;
-  selectCharacterComment(Number(button.dataset.commentIndex));
-});
-
 function closeModal(){
  if(!modal.classList.contains("open")) return;
  stopDetailMedia();
