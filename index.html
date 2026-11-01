@@ -1,211 +1,86 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
-  <title>HerdMentality</title>
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css?v=profiles-20261101">
-  <link rel="stylesheet" href="friend-links.css">
-  <script defer src="content-warning.js"></script>
-</head>
-<body class="content-warning-pending">
-<div class="content-warning" id="contentWarning" role="dialog" aria-modal="true" aria-labelledby="contentWarningTitle" aria-describedby="contentWarningDescription">
-  <div class="content-warning-panel">
-    <p class="content-warning-kicker">NOTICE / CONTENT WARNING</p>
-    <h2 id="contentWarningTitle">閲覧前のご確認</h2>
-    <div class="content-warning-copy" id="contentWarningDescription">
-      <p>当サイトの一次創作には、未成年者による犯罪、未成年者に対する残酷な行為、PTSD・複雑性PTSD（CPTSD）に関連する心的外傷を想起させる背景設定、および一般的な倫理・道徳の観点から容認されない行為の描写・言及が含まれます。</p>
-      <p>これらの題材により、心理的な負担を感じる場合があります。内容をご理解いただき、受け入れられる方のみ「OK」を押して閲覧を続けてください。</p>
-      <p>受け入れることが難しい場合は、当サイトの一次創作設定に関する情報を、これ以上詳しく閲覧しないようお願いいたします。</p>
-    </div>
-    <button class="content-warning-accept" id="contentWarningAccept" type="button">OK</button>
-  </div>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#030306" name="theme-color"/>
+<meta content="HerdMentality — UTAU voicebank archive by quef. Voicebank details, UST distribution, terms and update log." name="description"/>
+<title>HerdMentality — UTAU VOICE ARCHIVE</title>
+<link href="assets/site.css" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon"/><link href="friend-links.css" rel="stylesheet"/></head>
+<body class="home-page">
+<main aria-label="HerdMentality キャラクターセレクト" class="stage" id="top">
+<div aria-hidden="true" class="stage-field"></div>
+<div aria-hidden="true" class="stage-vignette"></div>
+<div aria-hidden="true" class="stage-scan"></div>
+<img alt="" aria-hidden="true" class="mobile-house" src="assets/red-house.png"/>
+<header class="topbar">
+<button aria-label="最初のキャラクターに戻る" class="brand" id="resetToStart" type="button">HerdMentality</button>
+<nav aria-label="メインナビゲーション" class="topnav"><button id="homeNav" type="button">INDEX</button><button id="openVoicebankNav" type="button">VOICEBANK</button><a href="#updates">UPDATE LOG</a><a href="https://bowlroll.net/user/922902" rel="noopener noreferrer" target="_blank">UST配布</a><a href="terms.html">利用規約</a></nav>
+</header>
+
+
+<div aria-hidden="true" class="signal-ruler"><span></span></div>
+<div aria-hidden="true" class="finder-mark"></div>
+<button aria-label="前のキャラクター" class="switch-arrow arrow-prev" id="prevChar" type="button">‹</button>
+<section aria-label="選択中のキャラクター" class="figure-holder">
+<button aria-label="キャラクターの詳細を開く" class="figure-button" id="openCharacter" type="button">
+<img alt="" class="figure" draggable="false" id="figure" src="images/常世チヨ.png"/><span class="figure-fallback" hidden="" id="figureFallback">IMAGE NOT AVAILABLE</span>
+</button>
+</section>
+<button aria-label="次のキャラクター" class="switch-arrow arrow-next" id="nextChar" type="button">›</button>
+<nav aria-label="キャラクターを選択" class="character-index">
+<span aria-hidden="true" class="index-line"></span>
+<div class="character-names" id="characterNames"></div>
+<span aria-hidden="true" class="index-line index-line-right"></span>
+</nav>
+<span aria-hidden="true" class="stage-credit">H M / VOICE ARCHIVE</span>
+</main><div class="page-lower"><section aria-labelledby="updateHeading" class="updates-area" id="updates"><div class="updates-head"><p class="updates-eyebrow">RECORD / PUBLIC</p><h2 id="updateHeading">UPDATE LOG</h2></div><div class="updates-entry"><time>2026.Sep</time><p>足立サホ_Cracker / 小泉マキ_Seasalt　音源配布</p></div><nav aria-label="配布と規約" class="updates-utility"><a href="https://bowlroll.net/user/922902" rel="noopener noreferrer" target="_blank">UST配布 ↗</a><a href="terms.html">利用規約 ↗</a></nav></section><section aria-label="隠し友情链接 / 外部音源配布サイト" class="friendlinks-zone">
+<div class="friendlinks-device" id="friendlinksDevice">
+<div class="friendlinks-figure">
+<button aria-controls="friendlinksMagazine" aria-expanded="false" aria-label="隠れたリンクを開く" class="friendlinks-trigger" id="friendlinksTrigger" type="button">
+<img alt="" draggable="false" height="660" src="images/links/gun.png" width="1040"/>
+</button>
+<div aria-hidden="true" class="friendlinks-magazine" id="friendlinksMagazine">
+<img alt="" class="friendlinks-magazine-image" draggable="false" height="580" src="images/links/magazine.png" width="320"/>
+<div class="friendlinks-rounds" id="friendlinksRounds"></div>
 </div>
-<noscript><p class="content-warning-noscript">閲覧にはJavaScriptを有効にしてください。</p></noscript>
-<div class="site-shell">
-  <header class="site-header">
-    <a class="brand" href="#top">
-      <span class="brand-main">HerdMentality</span>
-      <span class="brand-sub">UTAU VOICE ARCHIVE / QUEF</span>
-    </a>
-    <nav class="main-nav" aria-label="main navigation">
-      <button type="button" data-open="voicebank">VOICEBANK</button>
-      <button type="button" data-open="update">UPDATE</button>
-      <a href="terms.html">利用規約</a>
-      <a class="ust-link" href="https://bowlroll.net/user/922902" target="_blank" rel="noopener noreferrer">UST配布 ↗</a>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="hero-code">HM / ARCHIVE_2026</div>
-      <div class="hero-main">
-        <div class="hero-copy">
-          <p class="eyebrow">RECOVERED MOBILE TERMINAL / VOICE RECORDS</p>
-          <h1>HerdMentality</h1>
-          <p class="hero-note">
-            CONTACTS / VOICES / FRAGMENTS<br>
-            extracted from an unidentified device.
-          </p>
-        </div>
-        <div class="hero-chat" id="heroChat">
-          <div class="chat-top">
-            <span id="chatHeaderLabel">MESSAGE / RECOVERED</span>
-            <button type="button" class="chat-status" id="recoveredChatToggle" aria-controls="recoveredChatWindow" aria-expanded="false" aria-label="open recovered chat log">● ONLINE</button>
-          </div>
-          <div class="chat-window" id="recoveredChatWindow">
-            <div class="chat-row incoming chat-1">
-              <span class="chat-time">21:04</span>
-              <div class="chat-bubble">まだ起きてる？</div>
-            </div>
-            <div class="chat-row outgoing chat-2">
-              <div class="chat-bubble">うん。</div>
-              <span class="chat-time">21:05</span>
-            </div>
-            <div class="chat-row incoming chat-3">
-              <span class="chat-time">21:05</span>
-              <div class="chat-bubble">少しだけ話せる？</div>
-            </div>
-            <div class="chat-row incoming chat-typing">
-              <span class="chat-time"></span>
-              <div class="chat-bubble typing-bubble"><i></i><i></i><i></i></div>
-            </div>
-          </div>
-          <div class="chat-input">
-            <span>message...</span>
-            <b>↗</b>
-          </div>
-        </div>
-      </div>
-      <div class="hero-bottom">
-        <span>STATUS : ARCHIVED</span>
-        <span>ACCESS : PUBLIC</span>
-        <span>2026 / QUEF</span>
-      </div>
-    </section>
-
-    <section class="voice-area" id="voicebank">
-      <div class="section-head">
-        <div>
-          <p class="section-index">01 / DATABASE</p>
-          <h2>VOICEBANK</h2>
-        </div>
-        <p class="section-caption">registered voice libraries</p>
-      </div>
-      <div class="voice-grid" id="voiceGrid"></div>
-    </section>
-
-    <section class="update-section" id="update">
-      <div class="section-head">
-        <div>
-          <p class="section-index">02 / LOG</p>
-          <h2>UpDate</h2>
-        </div>
-        <p class="section-caption">distribution / correction records</p>
-      </div>
-      <div class="update-list">
-        <div class="update-entry">
-          <span class="update-date">2026.Sep</span>
-          <span class="update-text">[足立サホ_Cracker],[小泉マキ_Seasalt]音源を配布しています</span>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="terms" id="terms">
-      <div class="section-head">
-        <div>
-          <p class="section-index">03 / POLICY</p>
-          <h2>利用規約</h2>
-        </div>
-        <p class="section-caption">TERMS OF USE</p>
-      </div>
-      <div class="terms-link-area">
-        <p>音声ライブラリ・キャラクター・公式素材の利用条件を、項目ごとにご確認いただけます。</p>
-        <a href="terms.html">利用規約を読む ↗</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Small footer easter egg: images and URLs are configured in friend-links-data.js. -->
-  <section class="friendlinks-zone" aria-label="隠し友情链接 / 外部音源配布サイト">
-    <div class="friendlinks-device" id="friendlinksDevice">
-      <div class="friendlinks-figure">
-      <button class="friendlinks-trigger" type="button" id="friendlinksTrigger"
-              aria-label="隠れたリンクを開く" aria-expanded="false" aria-controls="friendlinksMagazine">
-        <img src="images/links/gun.png" alt="" width="1040" height="660" draggable="false">
-      </button>
-      <div class="friendlinks-magazine" id="friendlinksMagazine" aria-hidden="true">
-        <img class="friendlinks-magazine-image" src="images/links/magazine.png" alt=""
-             width="320" height="580" draggable="false">
-        <div class="friendlinks-rounds" id="friendlinksRounds"></div>
-      </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <span>HERDMENTALITY</span>
-    <span>UTAU VOICEBANK ARCHIVE</span>
-    <span>QUEF / 2026</span>
-  </footer>
 </div>
-
-<div class="modal detail-reference" id="voiceModal" role="dialog" aria-modal="true" aria-labelledby="detailName" aria-hidden="true">
-  <article class="detail-page" id="detailView" hidden>
-    <nav class="detail-page-nav" aria-label="キャラクター詳細ナビゲーション">
-      <button type="button" id="detailBack">← VOICEBANK INDEX</button>
-      <div class="detail-page-nav-right">
-        <button type="button" id="detailTerms">利用規約</button>
-        <a href="https://bowlroll.net/user/922902" target="_blank" rel="noopener noreferrer">UST配布 ↗</a>
-      </div>
-    </nav>
-
-    <!-- YouTube embeds appear only when a valid video URL is configured. -->
-    <section class="detail-video" id="detailVideo" aria-label="音源配布動画" hidden>
-      <iframe id="detailVideoFrame" title="音源配布動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-    </section>
-
-    <div class="detail-columns">
-      <div class="detail-portrait">
-        <img id="detailPortrait" alt="" decoding="async">
-      </div>
-      <div class="detail-reading">
-        <header class="detail-person">
-          <h2 id="detailName">足立サホ</h2>
-          <p id="detailRoman">ADACHI SAHO</p>
-        </header>
-        <div class="detail-story" id="detailStory"></div>
-        <div class="detail-variants" id="detailVariants" role="group" aria-label="音源バージョン"></div>
-        <div class="detail-specs" aria-label="音源情報">
-          <p id="detailFormat"></p>
-          <p id="detailPitch"></p>
-        </div>
-        <div class="detail-audio" aria-label="試聴プレイヤー">
-          <audio id="detailAudio" preload="metadata"></audio>
-          <button type="button" id="detailPlay" class="detail-play" aria-label="試聴を再生" aria-pressed="false" aria-keyshortcuts="Space" title="Space：再生 / 一時停止"><span aria-hidden="true">▶</span></button>
-          <input id="detailSeek" class="detail-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="音源の再生位置">
-          <div class="detail-times" aria-live="off"><span id="detailCurrent">0:00</span><span class="time-slash">/</span><span id="detailDuration">--:--</span></div>
-        </div>
-        <p class="detail-player-note" id="detailAudioStatus" role="status" aria-live="polite"></p>
-        <a id="detailDownload" class="detail-download" href="#">DOWNLOAD ↗</a>
-        <details class="detail-additional">
-          <summary>PROFILE / SPECIAL PHONEMES</summary>
-          <div class="detail-additional-body">
-            <dl id="detailFacts"></dl>
-            <div class="detail-phonemes" id="detailSpecial"></div>
-          </div>
-        </details>
-      </div>
-    </div>
-    <footer class="detail-staff" aria-label="制作クレジット" id="detailStaff"></footer>
-  </article>
 </div>
-<script src="script.js?v=profiles-20261101"></script>
-<script src="friend-links-data.js"></script>
-<script src="friend-links.js"></script>
-</body>
+</section><footer class="site-footer">HerdMentality / UTAU VOICE ARCHIVE<span>QUEF / 2026</span></footer></div>
+<div aria-hidden="true" aria-labelledby="dialogTitle" aria-modal="true" class="overlay" hidden="" id="overlay" role="dialog">
+<div aria-hidden="true" class="overlay-scan"></div>
+<section class="panel panel-index" hidden="" id="indexPanel">
+<header class="panel-top"><span>VOICEBANK / INDEX</span><button aria-label="閉じる" data-close-overlay="" type="button">CLOSE ×</button></header>
+<h2 id="indexTitle">VOICEBANK INDEX</h2>
+<div class="index-directory" id="indexList"></div>
+<p class="panel-fineprint">SELECT A NAME TO OPEN ITS DETAIL PAGE</p>
+</section>
+<article class="panel panel-detail" hidden="" id="detailPanel">
+<header class="panel-top"><span>VOICEBANK / DETAIL</span><a class="detail-ust" href="https://bowlroll.net/user/922902" rel="noopener noreferrer" target="_blank">UST配布 ↗</a><button aria-label="詳細を閉じる" data-close-overlay="" type="button">← BACK</button></header>
+<div class="detail-header"><span class="detail-no" id="detailNo"></span><h2 id="dialogTitle"></h2><span class="detail-roman" id="detailRoman"></span></div>
+<div class="detail-body">
+<div class="detail-portrait-col"><img alt="" id="detailFigure" src="images/常世チヨ.png"/><p class="detail-image-fallback" hidden="" id="detailImageFallback">立ち絵の画像ファイルが見つかりません</p><p class="portrait-caption" id="portraitCaption">ILLUSTRATION / SS</p></div>
+<div class="detail-reading-col">
+<div class="detail-description" id="detailDescription"></div>
+<div aria-label="音源バージョン" class="detail-versions" id="detailVersions" role="group"></div>
+<p class="detail-type" id="detailType"></p><p class="detail-pitch" id="detailPitch"></p>
+<div aria-label="試聴" class="detail-player">
+<button aria-label="試聴を再生" aria-pressed="false" id="detailPlay" type="button">▶</button>
+<input aria-label="音源の再生位置" id="detailSeek" max="1000" min="0" step="1" type="range" value="0"/>
+<span id="detailTime">0:00 / --:--</span>
+<audio id="detailAudio" preload="metadata"></audio>
+</div>
+<p aria-live="polite" class="detail-player-note" id="audioStatus" role="status"></p>
+<div class="detail-download" id="downloadArea"></div>
+<details class="detail-additional"><summary>PROFILE / SPECIAL PHONEMES</summary><div class="detail-additional-inner"><dl id="detailFacts"></dl><div id="detailSpecial"></div></div></details>
+</div>
+</div>
+<footer class="detail-staff" id="detailStaff"></footer>
+</article>
+</div>
+<script src="assets/voice-data.js"></script>
+<script src="assets/app.js"></script>
+<script src="friend-links-data.js"></script><script src="friend-links.js"></script></body>
 </html>
