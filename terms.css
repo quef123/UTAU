@@ -67,3 +67,26 @@
  .policy-section-body{font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){.policy-page{scroll-behavior:auto}}
+
+
+/* Mobile document typography follows the refreshed main-site scale. */
+@media(max-width:760px){
+  .policy-main{padding:45px 0 70px}
+  .policy-masthead{margin-bottom:34px}
+  .policy-kicker{font-size:11px}
+  .policy-masthead h1{font-size:clamp(31px,9vw,38px)}
+  .policy-toc{margin-bottom:38px}
+  .policy-toc a{font-size:13px;line-height:1.55;min-height:42px;align-items:center}
+  .policy-toc a span:first-child{font-size:11px}
+  .policy-section{grid-template-columns:26px minmax(0,1fr);column-gap:10px;padding:25px 0 36px}
+  .policy-section-body{font-size:16px;line-height:1.85;letter-spacing:0}
+  .policy-section-body h2{font-size:22px;line-height:1.5}
+  .policy-subsection h3{font-size:16px;line-height:1.65}
+  .policy-examples{font-size:15px;line-height:1.75}
+  .policy-list li{margin-bottom:10px}
+}
+@media(max-width:420px){
+  .policy-toc ol{grid-template-columns:1fr}
+  .policy-section-body{font-size:16px}
+  .policy-page .main-nav a{font-size:11px;letter-spacing:.03em}
+}
