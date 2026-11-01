@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   // Static site: all character assets are resolved by relative file paths.
-  // No upload controls, remote APIs, telemetry, repository access, or storage.
+  // No upload controls, remote APIs, telemetry, or repository access.
   const $ = (id) => document.getElementById(id);
   const roman = {saho:'ADACHI SAHO',maki:'KOIZUMI MAKI',ayako:'TOKOYO AYAKO',chiyo:'TOKOYO CHIYO',kiri:'TSUKISHIRO KIRI'};
   const stage=$('top'), figure=$('figure'), fallback=$('figureFallback');
@@ -13,21 +13,70 @@
   let selected=3, detailVariant=0, imageToken=0, dialogMode=null, previousFocus=null;
   const group=()=>groups[selected];
 
-  function loadPortrait(img, missing, src, alt) {
-    // Missing official art is never silently substituted with another person's portrait.
-    img.hidden=true;
-    missing.hidden=true;
-    img.alt=alt;
-    img.onload=()=>{img.hidden=false;missing.hidden=true;};
+  // The home image files are independent of all DETAIL image files.
+  // For supplied PNGs containing transparent padding, trim only transparent pixels
+  // in memory so the actual character fills the fixed, responsive display area.
+  // The source PNG on disk and the DETAIL assets are never modified.
+  const homeImageCache=new Map();
+  function trimTransparentPadding(img,source){
+    if(homeImageCache.has(source))return homeImageCache.get(source);
+    try{
+      const w=img.naturalWidth,h=img.naturalHeight;
+      if(!w||!h)return source;
+      const probe=document.createElement('canvas');
+      const ratio=Math.min(1,420/Math.max(w,h));
+      probe.width=Math.max(1,Math.round(w*ratio));
+      probe.height=Math.max(1,Math.round(h*ratio));
+      const ctx=probe.getContext('2d',{willReadFrequently:true});
+      if(!ctx)return source;
+      ctx.drawImage(img,0,0,probe.width,probe.height);
+      const {data}=ctx.getImageData(0,0,probe.width,probe.height);
+      let minX=probe.width,minY=probe.height,maxX=-1,maxY=-1;
+      for(let y=0;y<probe.height;y++)for(let x=0;x<probe.width;x++){
+        if(data[(y*probe.width+x)*4+3]>12){
+          minX=Math.min(minX,x);maxX=Math.max(maxX,x);
+          minY=Math.min(minY,y);maxY=Math.max(maxY,y);
+        }
+      }
+      if(maxX<0||maxY<0){homeImageCache.set(source,source);return source;}
+      const left=Math.max(0,Math.floor(minX/ratio)-3),top=Math.max(0,Math.floor(minY/ratio)-3);
+      const right=Math.min(w,Math.ceil((maxX+1)/ratio)+3),bottom=Math.min(h,Math.ceil((maxY+1)/ratio)+3);
+      // A tiny transparent border is harmless; avoid unnecessary recompression.
+      if(left<4&&top<4&&w-right<4&&h-bottom<4){homeImageCache.set(source,source);return source;}
+      const cropped=document.createElement('canvas');cropped.width=right-left;cropped.height=bottom-top;
+      cropped.getContext('2d').drawImage(img,left,top,cropped.width,cropped.height,0,0,cropped.width,cropped.height);
+      const url=cropped.toDataURL('image/png');
+      homeImageCache.set(source,url);return url;
+    }catch{
+      // file:// restrictions or unexpected PNGs: display the unmodified file.
+      return source;
+    }
+  }
+  function loadPortrait(img,missing,src,alt,home=false){
+    img.hidden=true;missing.hidden=true;img.alt=alt;
+    img.onload=()=>{
+      if(home){
+        const fitted=trimTransparentPadding(img,src);
+        if(fitted!==src&&img.src!==fitted){img.src=fitted;return;}
+      }
+      img.hidden=false;missing.hidden=true;
+    };
     img.onerror=()=>{img.hidden=true;missing.hidden=false;};
-    // If a variant has no image file, show a readable, honest fallback.
-    if(src){img.src=src;}else{img.removeAttribute('src');missing.hidden=false;}
-    if(img.complete){if(img.naturalWidth>0){img.hidden=false;missing.hidden=true;}else{img.hidden=true;missing.hidden=false;}}
+    if(src){img.src=home&&homeImageCache.has(src)?homeImageCache.get(src):src;}
+    else{img.removeAttribute('src');missing.hidden=false;}
+    if(img.complete&&img.naturalWidth>0){
+      if(home&&img.src===src){const fitted=trimTransparentPadding(img,src);if(fitted!==src){img.src=fitted;return;}}
+      img.hidden=false;missing.hidden=true;
+    }
   }
   function renderStageFigure(){
-    const character=group();
-    loadPortrait(figure,fallback,character.variants[0].img,`${character.name} の立ち絵`);
-    $('openCharacter').setAttribute('aria-label',`${character.name} の詳細を開く`);
+    const character=group(),home=character.home;
+    const holder=$('openCharacter');
+    holder.style.setProperty('--home-scale',String(home?.scale??1));
+    holder.style.setProperty('--home-offset-x',`${home?.offsetX??0}px`);
+    holder.style.setProperty('--home-offset-y',`${home?.offsetY??0}px`);
+    loadPortrait(figure,fallback,home?.img,`${character.name} のホーム立ち絵`,true);
+    holder.setAttribute('aria-label',`${character.name} の詳細を開く`);
   }
   function select(index,focusName=false){
     selected=(index+groups.length)%groups.length;
@@ -113,7 +162,6 @@
     // The voicebank content is curated site-owned markup from voice-data.js, not user input.
     $('detailDescription').innerHTML=v.desc||'';
     loadPortrait(detailImage,detailFallback,v.img,`${g.name} ${v.label} の立ち絵`);
-    $('portraitCaption').textContent='ILLUSTRATION / SS';
     const versionArea=$('detailVersions');versionArea.replaceChildren();
     g.variants.forEach((item,i)=>{
       const button=document.createElement('button');button.type='button';button.className='detail-version';button.textContent=item.label;

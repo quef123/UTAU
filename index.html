@@ -9,7 +9,7 @@
 <title>HerdMentality — UTAU VOICE ARCHIVE</title>
 <link href="assets/site.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon"/><link href="friend-links.css" rel="stylesheet"/></head>
-<body class="home-page">
+<body class="home-page content-warning-pending">
 <main aria-label="HerdMentality キャラクターセレクト" class="stage" id="top">
 <div aria-hidden="true" class="stage-field"></div>
 <div aria-hidden="true" class="stage-vignette"></div>
@@ -26,7 +26,7 @@
 <button aria-label="前のキャラクター" class="switch-arrow arrow-prev" id="prevChar" type="button">‹</button>
 <section aria-label="選択中のキャラクター" class="figure-holder">
 <button aria-label="キャラクターの詳細を開く" class="figure-button" id="openCharacter" type="button">
-<img alt="" class="figure" draggable="false" id="figure" src="images/常世チヨ.png"/><span class="figure-fallback" hidden="" id="figureFallback">IMAGE NOT AVAILABLE</span>
+<img alt="" class="figure" draggable="false" id="figure" src="assets/home/tokoyo-chiyo.png"/><span class="figure-fallback" hidden="" id="figureFallback">IMAGE NOT AVAILABLE</span>
 </button>
 </section>
 <button aria-label="次のキャラクター" class="switch-arrow arrow-next" id="nextChar" type="button">›</button>
@@ -61,7 +61,7 @@
 <header class="panel-top"><span>VOICEBANK / DETAIL</span><a class="detail-ust" href="https://bowlroll.net/user/922902" rel="noopener noreferrer" target="_blank">UST配布 ↗</a><button aria-label="詳細を閉じる" data-close-overlay="" type="button">← BACK</button></header>
 <div class="detail-header"><span class="detail-no" id="detailNo"></span><h2 id="dialogTitle"></h2><span class="detail-roman" id="detailRoman"></span></div>
 <div class="detail-body">
-<div class="detail-portrait-col"><img alt="" id="detailFigure" src="images/常世チヨ.png"/><p class="detail-image-fallback" hidden="" id="detailImageFallback">立ち絵の画像ファイルが見つかりません</p><p class="portrait-caption" id="portraitCaption">ILLUSTRATION / SS</p></div>
+<div class="detail-portrait-col"><img alt="" id="detailFigure" src="images/常世チヨ.png"/><p class="detail-image-fallback" hidden="" id="detailImageFallback">立ち絵の画像ファイルが見つかりません</p></div>
 <div class="detail-reading-col">
 <div class="detail-description" id="detailDescription"></div>
 <div aria-label="音源バージョン" class="detail-versions" id="detailVersions" role="group"></div>
@@ -80,7 +80,15 @@
 <footer class="detail-staff" id="detailStaff"></footer>
 </article>
 </div>
+<div class="content-warning" id="contentWarning" role="dialog" aria-modal="true" aria-labelledby="contentWarningTitle" aria-describedby="contentWarningText">
+  <div class="content-warning-inner">
+    <h2 id="contentWarningTitle">閲覧前のご確認</h2>
+    <p id="contentWarningText">当サイトの一次創作には、未成年者による犯罪、未成年者に対する残酷な行為、PTSD・複雑性PTSD（CPTSD）に関連する心的外傷を想起させる背景設定、および一般的な倫理・道徳の観点から容認されない行為の描写・言及が含まれます。これらの題材により、心理的な負担を感じる場合があります。内容をご理解いただき、受け入れられる方のみ「OK」を押して閲覧を続けてください。受け入れることが難しい場合は、当サイトの一次創作設定に関する情報を、これ以上詳しく閲覧しないようお願いいたします。</p>
+    <button id="contentWarningAccept" type="button">OK</button>
+  </div>
+</div>
 <script src="assets/voice-data.js"></script>
 <script src="assets/app.js"></script>
-<script src="friend-links-data.js"></script><script src="friend-links.js"></script></body>
+<script src="friend-links-data.js"></script><script src="friend-links.js"></script>
+<script src="assets/content-warning.js"></script></body>
 </html>
