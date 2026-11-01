@@ -10,8 +10,22 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="terms.css">
+  <script defer src="content-warning.js"></script>
 </head>
-<body class="policy-page">
+<body class="policy-page content-warning-pending">
+<div class="content-warning" id="contentWarning" role="dialog" aria-modal="true" aria-labelledby="contentWarningTitle" aria-describedby="contentWarningDescription">
+  <div class="content-warning-panel">
+    <p class="content-warning-kicker">NOTICE / CONTENT WARNING</p>
+    <h2 id="contentWarningTitle">閲覧前のご確認</h2>
+    <div class="content-warning-copy" id="contentWarningDescription">
+      <p>当サイトの一次創作には、未成年者による犯罪、未成年者に対する残酷な行為、PTSD・複雑性PTSD（CPTSD）に関連する心的外傷を想起させる背景設定、および一般的な倫理・道徳の観点から容認されない行為の描写・言及が含まれます。</p>
+      <p>これらの題材により、心理的な負担を感じる場合があります。内容をご理解いただき、受け入れられる方のみ「OK」を押して閲覧を続けてください。</p>
+      <p>受け入れることが難しい場合は、当サイトの一次創作設定に関する情報を、これ以上詳しく閲覧しないようお願いいたします。</p>
+    </div>
+    <button class="content-warning-accept" id="contentWarningAccept" type="button">OK <span aria-hidden="true">↗</span></button>
+  </div>
+</div>
+<noscript><p class="content-warning-noscript">閲覧にはJavaScriptを有効にしてください。</p></noscript>
 <div class="site-shell">
   <header class="site-header">
     <a class="brand" href="index.html#top">
