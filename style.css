@@ -287,10 +287,13 @@ footer{
 }
 .detail-person p{margin-top:14px;font:17px/1.45 "Helvetica Neue",Arial,sans-serif;color:#666;letter-spacing:.01em}
 .detail-story{
-  margin:23px 0 27px;max-width:650px;color:#111;
-  font-size:16px;line-height:1.95;letter-spacing:.008em;white-space:normal;
+  margin:23px 0 27px;max-width:560px;color:#111;
+  font-size:16px;line-height:1.9;letter-spacing:.008em;white-space:normal;
+  overflow-wrap:break-word;
 }
-.detail-story br{display:block;content:"";margin-bottom:6px}
+.detail-story p{margin:0}
+.detail-story p+p{margin-top:.65em}
+.detail-story p.detail-story-identity{margin-top:1em;color:#737373;font-size:.875em;line-height:1.8}
 .detail-variants{
   display:flex;flex-wrap:wrap;align-items:baseline;
   gap:10px 21px;margin-bottom:18px;
@@ -375,7 +378,7 @@ footer{
  .detail-reading{padding:0}
  .detail-person h2{font-size:36px}
  .detail-person p{font-size:16px;margin-top:13px}
- .detail-story{font-size:15px;line-height:1.92;margin:20px 0 22px}
+ .detail-story{font-size:15px;line-height:1.85;margin:20px 0 22px}
  .detail-variants{gap:6px 17px}
  .detail-variant{font-size:12px;min-height:38px}
  .detail-specs{font-size:12px}
