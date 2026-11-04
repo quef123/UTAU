@@ -7,7 +7,7 @@
   <title>HerdMentality</title>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css?v=white-minimal-20261104">
+  <link rel="stylesheet" href="style.css?v=white-online-20261104">
   <link rel="stylesheet" href="friend-links.css">
   <script defer src="content-warning.js"></script>
 </head>
@@ -29,7 +29,6 @@
   <header class="site-header">
     <a class="brand" href="#top">
       <span class="brand-main">HerdMentality</span>
-      <span class="brand-sub">UTAU VOICE ARCHIVE / QUEF</span>
     </a>
     <nav class="main-nav" aria-label="main navigation">
       <button type="button" data-open="voicebank">VOICEBANK</button>
@@ -45,11 +44,38 @@
       <div class="hero-main">
         <div class="hero-copy">
           <p class="eyebrow">RECOVERED MOBILE TERMINAL / VOICE RECORDS</p>
-          <h1>HerdMentality</h1>
           <p class="hero-note">
             CONTACTS / VOICES / FRAGMENTS<br>
             extracted from an unidentified device.
           </p>
+        </div>
+        <div class="hero-chat" id="heroChat">
+          <div class="chat-top">
+            <span id="chatHeaderLabel">MESSAGE / RECOVERED</span>
+            <span class="chat-status" aria-label="ONLINE">● ONLINE</span>
+          </div>
+          <div class="chat-window" id="recoveredChatWindow">
+            <div class="chat-row incoming chat-1">
+              <span class="chat-time">21:04</span>
+              <div class="chat-bubble">まだ起きてる？</div>
+            </div>
+            <div class="chat-row outgoing chat-2">
+              <div class="chat-bubble">うん。</div>
+              <span class="chat-time">21:05</span>
+            </div>
+            <div class="chat-row incoming chat-3">
+              <span class="chat-time">21:05</span>
+              <div class="chat-bubble">少しだけ話せる？</div>
+            </div>
+            <div class="chat-row incoming chat-typing">
+              <span class="chat-time"></span>
+              <div class="chat-bubble typing-bubble"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <span>message...</span>
+            <b>↗</b>
+          </div>
         </div>
       </div>
       <div class="hero-bottom">
