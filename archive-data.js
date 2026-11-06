@@ -67,7 +67,7 @@ const groups = [
 {
  groupId:"ayako",file:"03",name:"常世アヤコ",
  variants:[{
-  id:"ayako",label:"MAIN",type:"1音階単独音",pitch:"A3",
+  id:"ayako",label:"無印",type:"1音階単独音",pitch:"A3",
   img:"images/常世アヤコ.png",audio:"audio/常世アヤコ.wav",zip:"download/常世アヤコ.zip",
   desc:[
    "かつて何でもできた姉が、突然すべてを失った。",
@@ -83,7 +83,7 @@ const groups = [
 {
  groupId:"chiyo",file:"04",name:"常世チヨ",
  variants:[{
-  id:"chiyo",label:"MAIN",type:"1音階単独音",pitch:"A4",
+  id:"chiyo",label:"無印",type:"1音階単独音",pitch:"A4",
   img:"images/常世チヨ.png",audio:"audio/常世チヨ.wav",zip:"download/常世チヨ.zip",
   desc:[
    "追い詰められた末に、彼女が選んだのは権力だった。",
