@@ -112,3 +112,10 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .detail .ust-meta .link{padding:7px 12px;font-size:12px;line-height:1.4;border-radius:3px}
 .detail .ust-meta + .ust-terms{margin-top:18px;padding-top:0}
 @media(max-width:750px){.detail .ust-meta{grid-template-columns:86px minmax(0,1fr)}.detail .ust-meta dt,.detail .ust-meta dd{padding:7px 0;font-size:12px}.detail .ust-meta .link{padding:7px 10px;font-size:12px}}
+
+/* UST list pagination */
+.ust-pagination{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;padding:20px 10px 26px}
+.ust-pagination button{border:0;background:transparent;color:#888;font-size:12px;line-height:1;min-width:28px;height:30px;padding:0 6px;border-radius:4px}
+.ust-pagination button:hover:not(:disabled){background:#f0f0f0;color:#222}
+.ust-pagination button.active{background:#ebebeb;color:#222;font-weight:600}
+.ust-pagination button:disabled{opacity:.3;cursor:default}
