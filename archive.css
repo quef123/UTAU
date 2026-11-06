@@ -86,3 +86,6 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 
 /* UST archive */
 .ust-title{overflow-wrap:anywhere}.ust-meta{margin:0 0 36px}.ust-meta dd{overflow-wrap:anywhere}.ust-password{user-select:text}.ust-terms{border-top:1px dashed #d6d6d6;padding-top:12px;margin-top:32px}.ust-terms .section-title{font-size:20px;margin:22px 0 18px}.ust-terms ul{padding-left:20px;line-height:2;color:#444;font-size:13px}.ust-terms li{margin-bottom:7px}.ust-terms p{font-size:13px;line-height:2;color:#666;margin-top:26px}
+
+/* Character records */
+.record-meta{margin-bottom:38px}.record-section{border-top:1px solid #e7e7e7;padding-top:4px;margin-top:36px;max-width:760px}.record-section .section-title{font-size:21px;margin:24px 0 18px}.record-section p{font-size:14px;line-height:2.15;color:#444;letter-spacing:.025em;white-space:pre-wrap;margin:0 0 18px}
