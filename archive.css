@@ -119,3 +119,10 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .ust-pagination button:hover:not(:disabled){background:#f0f0f0;color:#222}
 .ust-pagination button.active{background:#ebebeb;color:#222;font-weight:600}
 .ust-pagination button:disabled{opacity:.3;cursor:default}
+
+/* Minimal voicebank variant arrows: no outlined pill-shaped box */
+.variant-arrow{border:0;box-shadow:none;background:transparent;border-radius:0;width:30px;height:48px;padding:0;font-size:36px;color:#999;transition:color .15s ease,opacity .15s ease}
+.variant-arrow:hover{background:transparent;color:#333}
+.variant-arrow:focus-visible{outline:1px solid #aaa;outline-offset:3px;border-radius:2px}
+.variant-arrow.prev{left:-36px}.variant-arrow.next{right:-36px}
+@media(max-width:750px){.variant-arrow{width:26px;height:42px;font-size:32px}.variant-arrow.prev{left:-18px}.variant-arrow.next{right:-18px}}
