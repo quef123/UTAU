@@ -93,3 +93,15 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 /* Notice page: subtle dashed separators instead of solid rules */
 .notice-document .policy-section{border-top:1px dashed #d6d6d6;border-bottom:1px dashed #d6d6d6}.detail:has(.notice-document) .line{border-top:1px dashed #d6d6d6}
 
+
+/* Remove decorative horizontal section dividers; retain the column layout and spacing. */
+.detail .line{border:0;height:0;margin:18px 0 28px}
+.detail .version-head{border-top:0;padding-top:0}
+.detail .meta{border-top:0}
+.detail .meta dt,.detail .meta dd{border-bottom:0}
+.detail .details{border-top:0;border-bottom:0}
+.detail .policy-section,.detail .notice-document .policy-section{border-top:0;border-bottom:0}
+.detail .update-entry{border-top:0}
+.detail .record-section{border-top:0}
+.detail .ust-terms{border-top:0}
+.archive-bottom-line{border-top:0}
