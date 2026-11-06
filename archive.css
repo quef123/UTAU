@@ -105,3 +105,10 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .detail .record-section{border-top:0}
 .detail .ust-terms{border-top:0}
 .archive-bottom-line{border-top:0}
+
+/* Compact UST distribution details only */
+.detail .ust-meta{grid-template-columns:112px minmax(0,1fr);margin:0 0 20px;row-gap:0}
+.detail .ust-meta dt,.detail .ust-meta dd{padding:8px 0;font-size:13px;line-height:1.55;align-self:center}
+.detail .ust-meta .link{padding:7px 12px;font-size:12px;line-height:1.4;border-radius:3px}
+.detail .ust-meta + .ust-terms{margin-top:18px;padding-top:0}
+@media(max-width:750px){.detail .ust-meta{grid-template-columns:86px minmax(0,1fr)}.detail .ust-meta dt,.detail .ust-meta dd{padding:7px 0;font-size:12px}.detail .ust-meta .link{padding:7px 10px;font-size:12px}}
