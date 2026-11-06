@@ -131,3 +131,8 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .detail .version-layout .meta{grid-template-columns:120px minmax(0,1fr);margin-bottom:18px}
 .detail .version-layout .meta dt,.detail .version-layout .meta dd{padding:7px 0;line-height:1.55}
 @media(max-width:750px){.detail .version-layout .meta{grid-template-columns:105px minmax(0,1fr)}.detail .version-layout .meta dt,.detail .version-layout .meta dd{padding:6px 0}}
+
+/* Character dossiers: remove empty vertical gaps between description paragraphs */
+.detail .record-section{margin-top:0;padding-top:0;max-width:760px}
+.detail .record-section p{margin:0;white-space:normal}
+.detail .record-section + .record-section{margin-top:0}
