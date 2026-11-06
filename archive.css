@@ -92,3 +92,8 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 
 /* Notice page: subtle dashed separators instead of solid rules */
 .notice-document .policy-section{border-top:1px dashed #d6d6d6;border-bottom:1px dashed #d6d6d6}.detail:has(.notice-document) .line{border-top:1px dashed #d6d6d6}
+
+/* Language selector: consistent typography in all three languages */
+.list-head-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}.language-switch{display:inline-flex;gap:3px;align-items:center}.language-switch button{font-family:inherit;font-size:12px;font-weight:400;line-height:18px;min-width:29px;min-height:28px;box-sizing:border-box;border:0;background:transparent;color:#888;padding:5px 7px;border-radius:4px}.language-switch button:hover{background:#eee}.language-switch button.active{background:#e8e8e8;color:#222;font-weight:600}.files header{gap:10px}.files header h2{min-width:0}.list-head-right small{white-space:nowrap}@media(max-width:700px){.list-head-right{gap:5px}.language-switch button{padding:5px 6px}}
+/* Keep language changes from altering text sizes and line rhythm */
+html:lang(zh-CN) .title,html:lang(ko) .title,html:lang(ja) .title{font-size:clamp(34px,4vw,64px);line-height:1.25}html:lang(zh-CN) .record-section p,html:lang(ko) .record-section p,html:lang(ja) .record-section p{font-size:14px;line-height:2.15}html:lang(zh-CN) .policy-section p,html:lang(ko) .policy-section p,html:lang(ja) .policy-section p{font-size:13px;line-height:2}html:lang(zh-CN) .section-title,html:lang(ko) .section-title,html:lang(ja) .section-title{line-height:1.45}
