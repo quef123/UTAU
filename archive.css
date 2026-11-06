@@ -83,3 +83,6 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .wave-canvas:focus-visible,.wave-toggle:focus-visible,.wave-mute:focus-visible{outline:1px solid #777;outline-offset:2px}
 .wave-time{flex:none;color:#555;font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap}
 @media(max-width:750px){.wave-player{gap:8px;padding:10px}.wave-time{font-size:10px}.wave-canvas{height:36px}}
+
+/* UST archive */
+.ust-title{overflow-wrap:anywhere}.ust-meta{margin:0 0 36px}.ust-meta dd{overflow-wrap:anywhere}.ust-password{user-select:text}.ust-terms{border-top:1px dashed #d6d6d6;padding-top:12px;margin-top:32px}.ust-terms .section-title{font-size:20px;margin:22px 0 18px}.ust-terms ul{padding-left:20px;line-height:2;color:#444;font-size:13px}.ust-terms li{margin-bottom:7px}.ust-terms p{font-size:13px;line-height:2;color:#666;margin-top:26px}
