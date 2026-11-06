@@ -126,3 +126,8 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .variant-arrow:focus-visible{outline:1px solid #aaa;outline-offset:3px;border-radius:2px}
 .variant-arrow.prev{left:-36px}.variant-arrow.next{right:-36px}
 @media(max-width:750px){.variant-arrow{width:26px;height:42px;font-size:32px}.variant-arrow.prev{left:-18px}.variant-arrow.next{right:-18px}}
+
+/* Tighter voicebank information rows */
+.detail .version-layout .meta{grid-template-columns:120px minmax(0,1fr);margin-bottom:18px}
+.detail .version-layout .meta dt,.detail .version-layout .meta dd{padding:7px 0;line-height:1.55}
+@media(max-width:750px){.detail .version-layout .meta{grid-template-columns:105px minmax(0,1fr)}.detail .version-layout .meta dt,.detail .version-layout .meta dd{padding:6px 0}}
