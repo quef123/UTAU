@@ -67,3 +67,8 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
  .sidebar button,.sidebar a{padding:8px;font-size:11px}
  .capsule{font-size:11px;padding:0 9px}
 }
+
+/* Footer and hidden links are distinct; the easter egg appears only in the notice view. */
+.archive-bottom[hidden]{display:none!important}
+.site-footer{margin-top:auto;padding:32px 0 10px;border-top:1px solid #e2e2e2;color:#999;font-size:11px;letter-spacing:.12em;text-align:right}
+.archive-bottom:not([hidden]) + .site-footer{margin-top:18px}
