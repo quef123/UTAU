@@ -183,10 +183,10 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .maki-easter{position:relative;display:flex;align-items:flex-end;gap:16px;width:max-content;max-width:100%;padding:15px 12px 34px 4px;filter:grayscale(1)}
 .maki-pc{width:180px;display:flex;flex-direction:column;align-items:center}
 .maki-monitor{position:relative;box-sizing:border-box;width:178px;height:132px;background:#c7c7c7;border:3px solid #444;border-radius:12px 12px 9px 9px;padding:12px 12px 20px;box-shadow:inset 3px 3px #eee,inset -3px -3px #999}
-.maki-screen{position:relative;overflow:hidden;width:100%;height:100%;border:3px solid #333;border-radius:7px;background:repeating-linear-gradient(0deg,#101010 0 2px,#575757 2px 3px,#202020 3px 5px,#9b9b9b 5px 6px,#080808 6px 8px);isolation:isolate}
-.maki-screen::before{content:"";position:absolute;inset:-25%;opacity:.7;background:repeating-linear-gradient(90deg,transparent 0 3px,#ddd 3px 5px,#090909 5px 8px,transparent 8px 11px);transform:skewX(9deg);mix-blend-mode:difference}
-.maki-screen::after{content:"";position:absolute;inset:0;opacity:.85;background:repeating-linear-gradient(0deg,transparent 0 3px,#eee 3px 4px,#111 4px 7px,transparent 7px 12px);mix-blend-mode:difference}
-.maki-no-signal{position:absolute;z-index:2;top:39%;left:10%;font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em;color:#eee;text-shadow:2px 1px #000,-2px -1px #666}
+.maki-screen{position:relative;overflow:hidden;width:100%;height:100%;border:3px solid #333;border-radius:7px;background:#050505;isolation:isolate}
+.maki-screen::before{content:"";position:absolute;inset:-25%;opacity:.7;background:repeating-linear-gradient(90deg,transparent 0 3px,#ddd 3px 5px,#090909 5px 8px,transparent 8px 11px);transform:skewX(9deg);mix-blend-mode:difference;visibility:hidden}
+.maki-screen::after{content:"";position:absolute;inset:0;opacity:.85;background:repeating-linear-gradient(0deg,transparent 0 3px,#eee 3px 4px,#111 4px 7px,transparent 7px 12px);mix-blend-mode:difference;visibility:hidden}
+.maki-no-signal{position:absolute;z-index:2;top:39%;left:10%;font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em;color:#eee;text-shadow:2px 1px #000,-2px -1px #666;visibility:hidden}
 .maki-power{position:absolute;right:12px;bottom:7px;width:5px;height:5px;border:1px solid #555;border-radius:50%;background:#777}
 .maki-stand{width:36px;height:17px;background:#aaa;border-left:2px solid #555;border-right:2px solid #555}
 .maki-keyboard{width:142px;height:15px;border:2px solid #555;border-radius:3px 3px 5px 5px;background:repeating-linear-gradient(90deg,#bdbdbd 0 8px,#777 8px 9px);box-shadow:inset 0 5px #ddd}
@@ -194,7 +194,5 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .maki-mouse span{position:absolute;top:2px;left:50%;height:18px;border-left:2px solid #666}
 .maki-mouse:hover{background:#999}.maki-mouse:focus-visible{outline:2px solid #555;outline-offset:4px}
 .maki-index{position:absolute;bottom:4px;left:4px;color:#888;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em}
-.maki-screen{background:#050505}
-.maki-screen::before,.maki-screen::after,.maki-no-signal{visibility:hidden}
 .maki-easter:hover .maki-screen{background:repeating-linear-gradient(0deg,#101010 0 2px,#575757 2px 3px,#202020 3px 5px,#9b9b9b 5px 6px,#080808 6px 8px)}
 .maki-easter:hover .maki-screen::before,.maki-easter:hover .maki-screen::after,.maki-easter:hover .maki-no-signal{visibility:visible}
