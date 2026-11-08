@@ -170,3 +170,10 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .contact-social dd{margin:0;overflow-wrap:anywhere}
 .contact-note{border:1px solid #ccc;padding:18px;margin-top:40px;font-size:12px;line-height:1.9;color:#888}
 @media(max-width:850px){.contact-layout{grid-template-columns:1fr}.contact-primary{padding:22px}.contact-secondary{border-left:0;border-top:1px solid #d0d0d0;padding:24px}.contact-mail-body{padding:24px 15px;gap:14px}.contact-mail-icon{flex-basis:45px;height:45px;font-size:22px}.contact-note{margin-top:25px}}
+
+/* Voicebank format summary */
+.version-summary{margin:0 0 24px}
+.version-format{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.22em;color:#999;font-size:11px}
+.version-format span{margin:0 10px;color:#aaa}
+.version-description{font-size:13px;line-height:1.8;color:#888;margin:12px 0 0}
+@media(max-width:750px){.version-summary{margin-bottom:18px}.version-description{font-size:12px}}
