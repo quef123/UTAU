@@ -179,3 +179,28 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 @media(max-width:750px){.version-summary{margin-bottom:18px}.version-description{font-size:12px}}
 
 .version-description{white-space:pre-line}
+
+/* Maki's monochrome CRT Easter egg */
+.maki-easter{position:relative;display:flex;align-items:flex-end;gap:16px;width:max-content;max-width:100%;padding:15px 12px 34px 4px;filter:grayscale(1)}
+.maki-pc{width:180px;display:flex;flex-direction:column;align-items:center}
+.maki-monitor{position:relative;box-sizing:border-box;width:178px;height:132px;background:#c7c7c7;border:3px solid #444;border-radius:12px 12px 9px 9px;padding:12px 12px 20px;box-shadow:inset 3px 3px #eee,inset -3px -3px #999}
+.maki-screen{position:relative;overflow:hidden;width:100%;height:100%;border:3px solid #333;border-radius:7px;background:repeating-linear-gradient(0deg,#101010 0 2px,#575757 2px 3px,#202020 3px 5px,#9b9b9b 5px 6px,#080808 6px 8px);isolation:isolate}
+.maki-screen::before{content:"";position:absolute;inset:-25%;opacity:.7;background:repeating-linear-gradient(90deg,transparent 0 3px,#ddd 3px 5px,#090909 5px 8px,transparent 8px 11px);transform:skewX(9deg);mix-blend-mode:difference}
+.maki-screen::after{content:"";position:absolute;inset:0;opacity:.85;background:repeating-linear-gradient(0deg,transparent 0 3px,#eee 3px 4px,#111 4px 7px,transparent 7px 12px);mix-blend-mode:difference}
+.maki-no-signal{position:absolute;z-index:2;top:39%;left:10%;font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em;color:#eee;text-shadow:2px 1px #000,-2px -1px #666}
+.maki-power{position:absolute;right:12px;bottom:7px;width:5px;height:5px;border:1px solid #555;border-radius:50%;background:#777}
+.maki-stand{width:36px;height:17px;background:#aaa;border-left:2px solid #555;border-right:2px solid #555}
+.maki-keyboard{width:142px;height:15px;border:2px solid #555;border-radius:3px 3px 5px 5px;background:repeating-linear-gradient(90deg,#bdbdbd 0 8px,#777 8px 9px);box-shadow:inset 0 5px #ddd}
+.maki-mouse{position:relative;width:34px;height:46px;margin-bottom:0;border:2px solid #444;border-radius:48% 48% 42% 42%;background:#bcbcbc;box-shadow:inset 3px 2px #eee;cursor:pointer;flex:none}
+.maki-mouse span{position:absolute;top:2px;left:50%;height:18px;border-left:2px solid #666}
+.maki-mouse:hover{background:#999}.maki-mouse:focus-visible{outline:2px solid #555;outline-offset:4px}
+.maki-index{position:absolute;bottom:4px;left:4px;color:#888;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.09em}
+.maki-easter:hover .maki-screen{animation:maki-flicker .12s steps(2,end) infinite}
+.maki-easter:hover .maki-screen::before{animation:maki-static .09s steps(3,end) infinite;opacity:1}
+.maki-easter:hover .maki-screen::after{animation:maki-tear .17s steps(2,end) infinite;opacity:1}
+.maki-easter:hover .maki-no-signal{animation:maki-text .18s steps(2,end) infinite}
+@keyframes maki-static{0%{transform:translate(-13%,9%) skewX(12deg)}33%{transform:translate(18%,-19%) skewX(-19deg)}66%{transform:translate(-24%,16%) skewX(22deg)}100%{transform:translate(9%,-13%) skewX(-14deg)}}
+@keyframes maki-tear{0%{transform:translateY(-30%);clip-path:polygon(0 0,100% 0,100% 33%,0 33%)}50%{transform:translateY(18%);clip-path:polygon(0 30%,100% 30%,100% 70%,0 70%)}100%{transform:translateY(-14%);clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%)}}
+@keyframes maki-flicker{0%{filter:contrast(2) brightness(.65)}50%{filter:contrast(4) brightness(1.8)}100%{filter:contrast(3) brightness(.9)}}
+@keyframes maki-text{0%{transform:translateX(-5px)}50%{transform:translateX(7px)}100%{transform:translateX(-2px)}}
+@media(prefers-reduced-motion:reduce){.maki-easter:hover .maki-screen,.maki-easter:hover .maki-screen::before,.maki-easter:hover .maki-screen::after,.maki-easter:hover .maki-no-signal{animation:none}}
