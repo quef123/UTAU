@@ -139,3 +139,10 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 
 /* Smaller, quieter links in UST distribution metadata */
 .detail .ust-meta .link{padding:4px 8px;font-size:11px;line-height:1.35;border-radius:2px}
+
+/* Structured character dossier */
+.record-profile{display:grid;grid-template-columns:145px minmax(0,1fr);margin:24px 0 0;border-top:1px solid #ddd}
+.record-profile dt,.record-profile dd{margin:0;padding:15px 14px;border-bottom:1px solid #ddd;font-size:13px;line-height:1.85;overflow-wrap:anywhere}
+.record-profile dt{color:#777;background:#f7f7f7}
+.record-profile dd{color:#333;white-space:pre-wrap}
+@media(max-width:750px){.record-profile{grid-template-columns:100px minmax(0,1fr)}.record-profile dt,.record-profile dd{padding:11px 10px;font-size:12px}}
