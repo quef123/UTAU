@@ -177,3 +177,5 @@ a[x-apple-data-detectors],a[x-apple-data-detectors="true"],.detail a:not(.link),
 .version-format span{margin:0 10px;color:#aaa}
 .version-description{font-size:13px;line-height:1.8;color:#888;margin:12px 0 0}
 @media(max-width:750px){.version-summary{margin-bottom:18px}.version-description{font-size:12px}}
+
+.version-description{white-space:pre-line}
