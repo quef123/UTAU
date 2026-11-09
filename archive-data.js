@@ -59,7 +59,7 @@ const groups = [
 {
  groupId:"kiri",file:"05",name:"月代キリ",
  variants:[{
-  id:"kiri-main",label:"無印",type:"1音階単独音 / CVVC",pitch:"F4",
+  id:"kiri-main",label:"無印",type:"2音階単独音 / CVVC",pitch:"F4 / A3",
   img:"images/月代キリ_無印.png",audio:"audio/月代キリ_無印.wav",zip:"",
   ...kiriCommon
  },
